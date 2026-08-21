@@ -62,11 +62,11 @@ export const products: Product[] = [
       "Café CRM unifies orders, staff, and inventory for café chains. See how a 4-branch Qatari café chain standardized operations with it.",
   },
   {
-    slug: "fernuiche",
-    title: "Fernuiche",
+    slug: "furniech",
+    title: "Furniech",
     category: "Construction & Furnishing",
     shortExplanation:
-      "Fernuiche is a project management platform purpose-built for furnishing and construction businesses working directly with end customers (engineer-to-customer / B2C). It turns a construction or fit-out project into a transparent, phase-by-phase journey — so customers always know what's happening, what it costs, and when it'll be done.",
+      "Furniech is a project management platform purpose-built for furnishing and construction businesses working directly with end customers (engineer-to-customer / B2C). It turns a construction or fit-out project into a transparent, phase-by-phase journey — so customers always know what's happening, what it costs, and when it'll be done.",
     highlights: [
       "Phased project timelines: every project is broken into clear phases and steps, each with its own timeline, so customers can track exactly where things stand.",
       "Live cost & time estimation: built-in finance tracking lets customers see estimated cost and remaining time update as the project progresses.",
@@ -78,7 +78,7 @@ export const products: Product[] = [
       challenge:
         "A large share of the client's customers were based outside the country — Gulf-based expats furnishing apartments back home — and had no reliable way to track progress or communicate with site engineers beyond scattered phone calls and photos. This led to frequent misunderstandings about cost, timelines, and scope.",
       solution:
-        "We implemented Fernuiche to structure every project into defined phases with timelines, attached cost and finance tracking to each phase, and gave customers a portal to view progress photos and videos in real time — closing the communication gap between site and customer, regardless of location.",
+        "We implemented Furniech to structure every project into defined phases with timelines, attached cost and finance tracking to each phase, and gave customers a portal to view progress photos and videos in real time — closing the communication gap between site and customer, regardless of location.",
       results:
         "The client saw a marked drop in customer disputes over scope and cost, faster sign-offs between project phases, and a noticeable increase in referrals from overseas clients who — for the first time — felt fully in the loop despite being thousands of kilometers away.",
       quote: {
@@ -86,9 +86,9 @@ export const products: Product[] = [
         attribution: "Founder, client contracting firm",
       },
     },
-    metaTitle: "Fernuiche — Engineer-to-Customer Project Management | Scale 99",
+    metaTitle: "Furniech — Engineer-to-Customer Project Management | Scale 99",
     metaDescription:
-      "Fernuiche gives furnishing and construction clients a transparent, phase-by-phase view of their project, cost, and timeline.",
+      "Furniech gives furnishing and construction clients a transparent, phase-by-phase view of their project, cost, and timeline.",
   },
   {
     slug: "tendering",
