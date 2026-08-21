@@ -38,3 +38,11 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .bg-grid { background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 48px 48px; }
 ::selection { background: var(--accent); color: var(--accent-foreground); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* Slow accent pulse on the nav's primary action. Ported from the A1/Pioneer
+   header treatment, retuned from gold to Scale99 orange. */
+.nav-glow { animation: nav-glow-pulse 3.4s ease-in-out infinite; }
+@keyframes nav-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255,106,0,.18), 0 0 14px rgba(255,106,0,.35), 0 10px 30px rgba(0,0,0,.55); }
+  50%      { box-shadow: 0 0 0 1px rgba(255,106,0,.32), 0 0 26px rgba(255,106,0,.60), 0 10px 30px rgba(0,0,0,.55); }
+}

@@ -62,7 +62,7 @@ export function SiteHeader() {
 
           <Link
             href="/#contact"
-            className="flex items-center gap-2 whitespace-nowrap rounded-md bg-accent px-4 py-2 font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5"
+            className="nav-glow flex items-center gap-2 whitespace-nowrap rounded-md bg-accent px-4 py-2 font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5"
           >
             Request Demo <ArrowRight size={15} />
           </Link>
@@ -107,7 +107,7 @@ export function SiteHeader() {
           <Link
             href="/#contact"
             onClick={close}
-            className="mt-3 flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-3 font-semibold text-accent-foreground"
+            className="nav-glow mt-3 flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-3 font-semibold text-accent-foreground"
           >
             Request Demo <ArrowRight size={15} />
           </Link>
