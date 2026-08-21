@@ -21,19 +21,19 @@ export default function IndustriesPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-32 text-foreground lg:pt-40">
-        <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-10 lg:pb-28">
+      <main className="min-h-screen bg-background pt-36 text-center text-foreground lg:pt-44">
+        <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">Industries</p>
-          <h1 className="mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+          <h1 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
             Sector experience where regulation and relationships matter most.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-7 text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-muted-foreground">
             Every sector needs different guardrails. We build systems shaped around the ones your business actually operates under.
           </p>
         </section>
 
         <section className="border-t border-white/10 px-6 pb-28 lg:px-10 lg:pb-40">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl">
             <div className="grid gap-5 md:grid-cols-3">
               {industries.map(item => (
                 <article key={item.title} className={`group relative flex min-h-80 flex-col justify-end overflow-hidden rounded-md bg-gradient-to-br ${item.tone} p-7`}>
@@ -46,7 +46,7 @@ export default function IndustriesPage() {
                   </div>
                 </article>
               ))}
-              <Link href="/#contact" className="group flex min-h-80 flex-col justify-between rounded-md border border-white/15 p-7 transition-colors hover:border-accent/40">
+              <Link href="/#contact" className="group flex min-h-80 flex-col items-center justify-center gap-6 rounded-md border border-white/15 p-7 transition-colors hover:border-accent/40">
                 <p className="text-sm leading-6 text-muted-foreground">Don&apos;t see your sector? We still might be a fit.</p>
                 <span className="flex items-center gap-2 text-sm font-semibold text-accent">Talk to us <ArrowRight className="transition-transform group-hover:translate-x-2" size={16} /></span>
               </Link>

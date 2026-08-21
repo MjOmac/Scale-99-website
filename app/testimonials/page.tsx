@@ -18,16 +18,16 @@ export default function TestimonialsPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-32 text-foreground lg:pt-40">
-        <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-10 lg:pb-28">
+      <main className="min-h-screen bg-background pt-36 text-center text-foreground lg:pt-44">
+        <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">Customer Testimonials</p>
-          <h1 className="mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+          <h1 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
             A better way forward.
           </h1>
         </section>
 
         <section className="border-t border-white/10 px-6 pb-28 lg:px-10 lg:pb-40">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl">
             <div className="grid gap-5 md:grid-cols-2">
               {testimonials.map(t => (
                 <blockquote key={t.name} className="rounded-md border border-white/10 bg-surface p-8">

@@ -37,29 +37,29 @@ export default function CaseStudiesPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-32 text-foreground lg:pt-40">
-        <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-10 lg:pb-28">
+      <main className="min-h-screen bg-background pt-36 text-center text-foreground lg:pt-44">
+        <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">Case Studies</p>
-          <h1 className="mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+          <h1 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
             Where the systems actually paid off.
           </h1>
         </section>
 
         <section className="border-t border-white/10 px-6 pb-28 lg:px-10 lg:pb-40">
-          <div className="mx-auto flex max-w-7xl flex-col gap-5">
+          <div className="mx-auto flex max-w-5xl flex-col gap-5">
             {caseStudies.map(study => (
-              <div key={study.client} className="grid gap-8 rounded-md border border-white/10 bg-surface p-8 lg:grid-cols-[1fr_auto] lg:items-center lg:p-10">
+              <div key={study.client} className="flex flex-col items-center gap-8 rounded-md border border-white/10 bg-surface p-8 lg:p-10">
+                <div className="w-48 rounded border border-white/15 bg-background/80 p-6">
+                  <p className="font-heading text-4xl font-semibold text-accent">{study.stat}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{study.statLabel}</p>
+                </div>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{study.client}</p>
                   <h2 className="mt-4 font-heading text-3xl font-semibold tracking-tight">{study.title}</h2>
-                  <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">{study.text}</p>
-                  <Link href="/#contact" className="mt-6 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+                  <p className="mx-auto mt-4 max-w-2xl leading-7 text-muted-foreground">{study.text}</p>
+                  <Link href="/#contact" className="mx-auto mt-6 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
                     Talk to us about a similar project <ArrowRight size={16} />
                   </Link>
-                </div>
-                <div className="shrink-0 rounded border border-white/15 bg-background/80 p-6 text-center lg:w-48">
-                  <p className="font-heading text-4xl font-semibold text-accent">{study.stat}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{study.statLabel}</p>
                 </div>
               </div>
             ))}

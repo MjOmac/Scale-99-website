@@ -21,22 +21,22 @@ export default function BlogPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-32 text-foreground lg:pt-40">
-        <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-10 lg:pb-28">
+      <main className="min-h-screen bg-background pt-36 text-center text-foreground lg:pt-44">
+        <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">From the field</p>
-          <h1 className="mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+          <h1 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
             Useful thinking.
           </h1>
         </section>
 
         <section className="border-t border-white/10 px-6 pb-28 lg:px-10 lg:pb-40">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl">
             <div className="grid gap-5 md:grid-cols-3">
               {posts.map(post => (
                 <article key={post.title} className="group rounded-md border border-white/10 bg-surface p-7 transition-colors hover:border-accent/40">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{post.type}</p>
                   <h3 className="mt-5 font-heading text-2xl font-semibold leading-tight transition-colors group-hover:text-accent">{post.title}</h3>
-                  <div className="mt-12 flex items-center justify-between text-xs text-muted-foreground">
+                  <div className="mt-12 flex items-center justify-center gap-3 text-xs text-muted-foreground">
                     <span>{post.date}</span>
                     <ArrowRight size={16} className="text-accent transition-transform group-hover:translate-x-1" />
                   </div>

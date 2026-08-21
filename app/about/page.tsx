@@ -18,22 +18,22 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-32 text-foreground lg:pt-40">
-        <section className="mx-auto max-w-7xl px-6 pb-20 lg:px-10 lg:pb-28">
+      <main className="min-h-screen bg-background pt-36 text-center text-foreground lg:pt-44">
+        <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">About Scale99</p>
-          <h1 className="mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+          <h1 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
             One team. Every system your business needs to grow.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-7 text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-muted-foreground">
             Scale99 is a software solutions company delivering customized software for mid-sized and well-established enterprises. We work across automation, CRM, database infrastructure, custom software, design, and web—for clients in medical &amp; pharmaceutical, construction &amp; furnishing, education, event &amp; venue management, and marketing.
           </p>
-          <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-2xl leading-7 text-muted-foreground">
             Rather than offering a single product, we bring together everything a growing business needs to run on better systems: the strategy and process work, the design, and the engineering—under one roof.
           </p>
         </section>
 
         <section className="border-y border-white/10 bg-surface px-6 py-20 lg:px-10 lg:py-28">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-5xl">
             <p className="eyebrow">Why Scale99</p>
             <h2 className="mt-5 font-heading text-4xl font-semibold tracking-tight sm:text-5xl">A different way to build.</h2>
             <div className="mt-14 grid gap-5 md:grid-cols-2">
