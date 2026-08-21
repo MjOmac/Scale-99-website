@@ -29,7 +29,25 @@ export default function Page() {
       <SiteHeader />
       <main className="min-h-screen bg-background text-center text-foreground">
         <section id="top" className="relative flex min-h-[780px] items-end overflow-hidden border-b border-white/10 px-6 pb-20 pt-32 lg:min-h-[880px] lg:px-10 lg:pb-28 lg:pt-36">
-          <img src="/scale99-hero-shooting-star.jpeg" alt="Shooting star streaking across the night sky" className="absolute inset-0 h-full w-full object-cover object-center opacity-65" />
+          {/* Decorative background. The still is both the poster (shown while the
+              video buffers) and the substitute for anyone who prefers reduced motion. */}
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-65 motion-reduce:hidden"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/scale99-hero-shooting-star.jpeg"
+            aria-hidden="true"
+          >
+            <source src="/scale99-hero-video.mp4" type="video/mp4" />
+          </video>
+          <img
+            src="/scale99-hero-shooting-star.jpeg"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 hidden h-full w-full object-cover object-center opacity-65 motion-reduce:block"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/10" />
           <div className="absolute inset-0 bg-grid opacity-25" />
           <div className="relative mx-auto w-full max-w-5xl">
