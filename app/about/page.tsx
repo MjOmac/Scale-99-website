@@ -18,7 +18,7 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-36 text-center text-foreground lg:pt-44">
+      <main className="min-h-screen bg-background pt-32 text-center text-foreground lg:pt-40">
         <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">About Scale99</p>
           <h1 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
