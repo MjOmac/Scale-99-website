@@ -241,7 +241,7 @@ export default function Page() {
             <div className="mt-14 divide-y divide-white/10 border-y border-white/10">
               {faqs.map(faq => (
                 <details key={faq.q} className="group py-6">
-                  <summary className="flex cursor-pointer list-none items-center justify-center gap-3 font-heading text-lg font-semibold marker:content-none">
+                  <summary className="flex list-none items-center justify-center gap-3 font-heading text-lg font-semibold marker:content-none">
                     {faq.q}
                     <ChevronDown className="shrink-0 text-accent transition-transform duration-200 group-open:rotate-180" size={18} />
                   </summary>

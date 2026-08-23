@@ -27,10 +27,22 @@
   --accent: #FF6A00;
   --accent-foreground: #0A0A0A;
   --border: rgba(255,255,255,.12);
+  --cursor-arrow: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNNiAzTDYgMjYuNUwxMiAyMUwxNi41IDI5LjVMMjAuNSAyNy41TDE2IDE5TDI0IDE5WiIgZmlsbD0iI0ZGNkEwMCIgc3Ryb2tlPSIjMEEwQTBBIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+");
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--background); }
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+  cursor: var(--cursor-arrow) 6 3, auto;
+}
+/* The browser's own stylesheet sets `cursor: pointer` directly on these
+   elements, which — as a direct rule — beats an inherited value regardless
+   of author/UA origin. Re-declaring the same accent arrow here, directly on
+   the same elements, is what actually makes it win. */
+a, button, summary, input, select, textarea, label, [role='button'], [tabindex] {
+  cursor: var(--cursor-arrow) 6 3, auto;
+}
 body { margin: 0; background: var(--background); color: var(--foreground); font-family: 'Inter', sans-serif; }
 .font-heading { font-family: 'Sora', sans-serif; }
 .eyebrow { color: var(--accent); font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
@@ -46,56 +58,10 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   transition: border-color .3s ease, box-shadow .3s ease;
 }
 
-/* ── HUD Crosshair cursor ─────────────────────────────────────────────────
-   The native cursor is only hidden once the component has mounted and
-   confirmed a fine pointer, so touch devices and JS-off both keep theirs. */
-.has-tech-cursor, .has-tech-cursor * { cursor: none !important; }
-
-.tc-v, .tc-h, .tc-box, .tc-read {
-  position: fixed; top: 0; left: 0; z-index: 9999;
-  pointer-events: none;
-  will-change: transform;
-}
-.cursor-away .tc-v, .cursor-away .tc-h, .cursor-away .tc-box, .cursor-away .tc-read { opacity: 0; }
-
-/* Full-span hairlines. Faded at the ends so they read as instrumentation
-   rather than literally splitting the page in two. */
-.tc-v {
-  width: 1px; height: 100%;
-  background: linear-gradient(180deg, transparent, rgba(255,106,0,.55) 20%, rgba(255,106,0,.55) 80%, transparent);
-  transition: opacity .2s ease;
-}
-.tc-h {
-  height: 1px; width: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,106,0,.55) 20%, rgba(255,106,0,.55) 80%, transparent);
-  transition: opacity .2s ease;
-}
-
-.tc-box {
-  width: 20px; height: 20px; margin: -10px 0 0 -10px;
-  border: 1px solid rgba(255,255,255,.75);
-  transition: width .2s ease, height .2s ease, margin .2s ease, border-color .2s ease, opacity .2s ease;
-}
-/* Over anything clickable: lock focus tighter and switch to accent so the
-   box reads as "targeted" against a plain background. */
-.tc-box.is-hot {
-  width: 34px; height: 34px; margin: -17px 0 0 -17px;
-  border-color: var(--accent);
-  box-shadow: 0 0 14px rgba(255,106,0,.35);
-}
-.tc-box.is-down { width: 14px; height: 14px; margin: -7px 0 0 -7px; }
-
-.tc-read {
-  font-family: var(--font-mono);
-  font-size: .64rem;
-  letter-spacing: .06em;
-  color: var(--accent);
-  background: rgba(10,10,10,.82);
-  border: 1px solid rgba(255,106,0,.3);
-  padding: 2px 6px;
-  white-space: nowrap;
-  transition: opacity .2s ease;
-}
+/* Cursor is set on the html rule above: the OS's own arrow shape, recolored
+   to the brand accent via a plain CSS `cursor` image rather than a JS-tracked
+   overlay. Touch devices ignore `cursor` entirely, so no pointer-type check
+   is needed the way the previous JS cursor required. */
 
 /* Stat "memory cards": a flip card that idles with a slow float and turns to
    reveal the detail on hover or keyboard focus. */
