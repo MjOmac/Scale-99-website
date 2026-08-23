@@ -54,6 +54,53 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 }
 .nav-logo { transition: height .5s cubic-bezier(.22,1,.36,1); }
 
+/* ── Reticle cursor ───────────────────────────────────────────────────────
+   The native cursor is only hidden once the component has mounted and
+   confirmed a fine pointer, so touch devices and JS-off both keep theirs. */
+.has-tech-cursor, .has-tech-cursor * { cursor: none !important; }
+
+.tc-dot, .tc-ring {
+  position: fixed; top: 0; left: 0; z-index: 9999;
+  pointer-events: none;
+  will-change: transform;
+}
+.cursor-away .tc-dot, .cursor-away .tc-ring { opacity: 0; }
+
+.tc-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(255,106,0,.9);
+  transition: opacity .2s ease;
+}
+
+.tc-ring {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(255,106,0,.55);
+  box-shadow: 0 0 14px rgba(255,106,0,.22), inset 0 0 10px rgba(255,106,0,.12);
+  transition: width .28s cubic-bezier(.22,1,.36,1), height .28s cubic-bezier(.22,1,.36,1),
+              border-color .28s ease, background-color .28s ease, opacity .2s ease;
+}
+/* Over anything clickable: open up and switch to white so the reticle stays
+   legible even on top of an accent-filled button. */
+.tc-ring.is-hot {
+  width: 54px; height: 54px;
+  border-color: rgba(255,255,255,.85);
+  background: rgba(255,106,0,.10);
+}
+.tc-ring.is-down { width: 26px; height: 26px; background: rgba(255,106,0,.22); }
+
+.tc-spin { position: absolute; inset: -7px; animation: tc-spin 8s linear infinite; }
+@keyframes tc-spin { to { transform: rotate(360deg); } }
+
+.tc-tick { position: absolute; background: var(--accent); }
+.tc-tick.tc-n, .tc-tick.tc-s { left: 50%; width: 1px; height: 5px; margin-left: -.5px; }
+.tc-tick.tc-e, .tc-tick.tc-w { top: 50%; height: 1px; width: 5px; margin-top: -.5px; }
+.tc-tick.tc-n { top: 0; }
+.tc-tick.tc-s { bottom: 0; }
+.tc-tick.tc-e { right: 0; }
+.tc-tick.tc-w { left: 0; }
+.tc-ring.is-hot .tc-tick { background: #fff; }
+
 /* Stat "memory cards": a flip card that idles with a slow float and turns to
    reveal the detail on hover or keyboard focus. */
 .mem { perspective: 1400px; }
