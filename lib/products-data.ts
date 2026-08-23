@@ -1,6 +1,6 @@
 // products-data.ts
-// Scale 99 — Product Portfolio content source.
-// This file IS the lightweight CMS: every product page and the /products
+// Scale 99 — Software content source.
+// This file IS the lightweight CMS: every software page and the /software
 // index page render from this array. Add a new object here and both pages
 // update automatically — no other code changes needed.
 //
@@ -29,6 +29,10 @@ export interface Product {
   caseStudy: CaseStudy;
   metaTitle: string;
   metaDescription: string;
+  /** Product-showcase image on /software, served from /public/product-media. Falls back to a placeholder card when unset. */
+  heroImage?: string;
+  /** Background video for the case-study hero on /software/[slug], served from /public/product-media. Falls back to a placeholder when unset. */
+  heroVideo?: string;
 }
 
 export const products: Product[] = [
@@ -60,6 +64,8 @@ export const products: Product[] = [
     metaTitle: "Café CRM — Multi-Branch Café Operations Platform | Scale 99",
     metaDescription:
       "Café CRM unifies orders, staff, and inventory for café chains. See how a 4-branch Qatari café chain standardized operations with it.",
+    heroImage: "/product-media/cafe-crm-image.jpeg",
+    heroVideo: "/product-media/cafe-crm-video.mp4",
   },
   {
     slug: "furniech",
@@ -89,6 +95,8 @@ export const products: Product[] = [
     metaTitle: "Furniech — Engineer-to-Customer Project Management | Scale 99",
     metaDescription:
       "Furniech gives furnishing and construction clients a transparent, phase-by-phase view of their project, cost, and timeline.",
+    heroImage: "/product-media/furniech-image.jpeg",
+    heroVideo: "/product-media/furniech-video.mp4",
   },
   {
     slug: "tendering",
@@ -114,6 +122,8 @@ export const products: Product[] = [
     metaTitle: "Tendering — Automated Bid Preparation for Contractors | Scale 99",
     metaDescription:
       "Tendering auto-generates priced, job-specific offers for construction bids, cutting preparation time from days to hours.",
+    heroImage: "/product-media/tendering-image.jpeg",
+    heroVideo: "/product-media/tendering-video.mp4",
   },
   {
     slug: "callscore-ai",
@@ -139,6 +149,8 @@ export const products: Product[] = [
     metaTitle: "CallScore AI — AI Interviewer for Call Center Hiring | Scale 99",
     metaDescription:
       "CallScore AI automates English-proficiency screening for call center hiring with fair, accent-calibrated scoring.",
+    heroImage: "/product-media/callscore-ai-image.jpeg",
+    heroVideo: "/product-media/callscore-ai-video.mp4",
   },
   {
     slug: "ai-marketing-automation",
@@ -164,6 +176,8 @@ export const products: Product[] = [
     metaTitle: "AI Marketing Automation Suite — Brand to Campaign | Scale 99",
     metaDescription:
       "From brand identity to scheduled posts — an AI marketing platform that runs the full campaign pipeline automatically.",
+    heroImage: "/product-media/ai-marketing-automation-image.jpeg",
+    heroVideo: "/product-media/ai-marketing-automation-video.mp4",
   },
   {
     slug: "procurement-inventory",
@@ -189,6 +203,8 @@ export const products: Product[] = [
     metaTitle: "Procurement & Inventory Modules — CRM-Native Stock Management | Scale 99",
     metaDescription:
       "Add procurement and inventory management directly into your existing CRM for unified stock, vendor, and sales visibility.",
+    heroImage: "/product-media/procurement-inventory-image.jpeg",
+    heroVideo: "/product-media/procurement-inventory-video.mp4",
   },
   {
     slug: "clinic-crm",
@@ -214,13 +230,15 @@ export const products: Product[] = [
     metaTitle: "Clinic CRM — Patient Scheduling & Follow-Up Platform | Scale 99",
     metaDescription:
       "Clinic CRM centralizes patient scheduling and follow-ups across branches, cutting missed appointments for healthcare practices.",
+    heroImage: "/product-media/clinic-crm-image.jpeg",
+    heroVideo: "/product-media/clinic-crm-video.mp4",
   },
   {
     slug: "finishing-contracting-ai",
     title: "Finishing Contractor AI Platform",
     category: "Construction",
     shortExplanation:
-      "A complete AI platform built for the full lifecycle of finishing and interior contracting work (تشطيبات) — from contract review and risk-flagging to project timelines and automated client notifications — designed to bring structure and oversight to a traditionally fragmented process.",
+      "A complete AI platform built for the full lifecycle of finishing and interior contracting work — from contract review and risk-flagging to project timelines and automated client notifications — designed to bring structure and oversight to a traditionally fragmented process.",
     highlights: [
       "AI-powered contract review: automatically reviews contracts and surfaces special warnings and risk flags before they become costly problems.",
       "Automated project timelines: builds and maintains project timelines, notifying clients and teams automatically as milestones approach or shift.",
@@ -236,7 +254,9 @@ export const products: Product[] = [
       results:
         "The client caught contractual risks earlier and more consistently, reduced unnoticed timeline slippage across active projects, and improved client satisfaction through proactive, automated status updates instead of reactive check-ins.",
     },
-    metaTitle: "Finishing Contractor AI Platform (تشطيبات) | Scale 99",
+    metaTitle: "Finishing Contractor AI Platform | Scale 99",
+    heroImage: "/product-media/finishing-contracting-ai-image.jpeg",
+    heroVideo: "/product-media/finishing-contracting-ai-video.mp4",
     metaDescription:
       "AI-powered contract review, risk flagging, and automated timelines for finishing and interior contracting companies.",
   },
@@ -264,6 +284,8 @@ export const products: Product[] = [
     metaTitle: "Stereotactic Surgical Planning Software | Scale 99",
     metaDescription:
       "Hardware-matched stereotactic planning software with MRI/CT registration, 3D visualization, and full trajectory planning.",
+    heroImage: "/product-media/stereotactic-planning-image.jpeg",
+    heroVideo: "/product-media/stereotactic-planning-video.mp4",
   },
 ];
 

@@ -10,12 +10,6 @@ const stats = [
   { headline: 'Simpler', label: 'Fewer steps, more work', detail: 'Fewer handoffs and approvals—systems that just run on their own.', accent: false },
 ]
 
-const aboutPoints = [
-  { title: 'One team, start to finish', text: 'Strategy, design, and development under one roof—no stalling on a handoff to another vendor.' },
-  { title: 'Built around your process', text: 'Every engagement starts with how your business actually works, not a generic template.' },
-  { title: 'Built to grow with you', text: 'Systems designed to scale with the business, not be replaced in two years.' },
-]
-
 const services = [
   { number: '01', title: 'Automation Tools' },
   { number: '02', title: 'CRM Solutions' },
@@ -103,7 +97,7 @@ export default function Page() {
         <section className="mx-auto max-w-5xl px-6 py-24 lg:px-10 lg:py-28">
           <p className="eyebrow">Why teams pick us</p>
           <h2 className="mt-5 font-heading text-4xl font-semibold tracking-tight sm:text-5xl">Three things you&apos;ll notice.</h2>
-          <p className="mx-auto mt-4 text-sm text-muted-foreground">Hover a card to see what it means in practice.</p>
+         
           <div className="mt-14 grid gap-5 sm:grid-cols-3">
             {stats.map((stat, i) => (
               <div key={stat.label} tabIndex={0} className="mem mem-float h-56 rounded-md outline-none" style={{ animationDelay: `${i * 0.9}s` }}>
@@ -123,25 +117,21 @@ export default function Page() {
         </section>
 
         {/* ── About ────────────────────────────────────────────── */}
-        <section id="about" className="border-y border-white/10 bg-surface px-6 py-24 lg:px-10 lg:py-32">
-          <div className="mx-auto max-w-5xl">
-            <p className="eyebrow">About Scale99</p>
-            <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              One team. Every system your business needs to grow.
-            </h2>
-            <p className="mx-auto mt-6 max-w-2xl leading-7 text-muted-foreground">
-              Scale99 delivers customized software for mid-sized and well-established enterprises—automation, CRM, database infrastructure, custom software, design, and web, brought together under one roof.
-            </p>
-            <div className="mt-14 grid gap-5 md:grid-cols-3">
-              {aboutPoints.map(point => (
-                <div key={point.title} className="rounded-md border border-white/10 bg-background p-7">
-                  <h3 className="font-heading text-lg font-semibold">{point.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{point.text}</p>
-                </div>
-              ))}
-            </div>
-            <Link href="/about" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
-              More about us <ArrowRight size={16} />
+        <section id="about" className="relative overflow-hidden border-y border-white/10 bg-surface px-6 py-24 lg:px-10 lg:py-32">
+          <div className="absolute inset-0 bg-grid opacity-15" />
+          <p aria-hidden="true" className="pointer-events-none absolute left-1/2 top-10 -translate-x-1/2 select-none font-heading text-[7rem] font-bold leading-none text-accent/10 sm:text-[10rem]">
+            &quot;
+          </p>
+          <div className="relative mx-auto max-w-2xl">
+            <p className="eyebrow">Who We Are</p>
+            <blockquote className="mt-8">
+              <p className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+                &quot;Software should fit the industry, <span className="text-accent">not the other way around.</span>&quot;
+              </p>
+              <footer className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-accent">— Scale 99.</footer>
+            </blockquote>
+            <Link href="/about" className="mx-auto mt-12 flex w-fit items-center gap-3 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">
+              Meet the team behind it <ArrowRight size={16} />
             </Link>
           </div>
         </section>
@@ -171,8 +161,8 @@ export default function Page() {
             <Link href="/services" className="flex items-center gap-3 text-sm font-semibold text-accent">
               All services <ArrowRight size={16} />
             </Link>
-            <Link href="/products" className="flex items-center gap-3 text-sm font-semibold text-accent">
-              See the {products.length} products we&apos;ve shipped <ArrowRight size={16} />
+            <Link href="/software" className="flex items-center gap-3 text-sm font-semibold text-accent">
+              See the {products.length} software products we&apos;ve shipped <ArrowRight size={16} />
             </Link>
           </div>
         </section>
@@ -205,8 +195,8 @@ export default function Page() {
               <Link href="/case-studies" className="flex items-center gap-3 text-sm font-semibold text-accent">
                 Read the case studies <ArrowRight size={16} />
               </Link>
-              <Link href="/portfolio" className="flex items-center gap-3 text-sm font-semibold text-accent">
-                Browse the portfolio <ArrowRight size={16} />
+              <Link href="/websites" className="flex items-center gap-3 text-sm font-semibold text-accent">
+                Browse the websites <ArrowRight size={16} />
               </Link>
             </div>
           </div>
@@ -267,8 +257,8 @@ export default function Page() {
               <a href="mailto:hello@scale99.com" className="flex items-center gap-3 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">
                 Set Up a Free Consultation <ArrowRight size={16} />
               </a>
-              <Link href="/products" className="flex items-center gap-3 rounded-md border border-white/30 px-5 py-3 text-sm font-semibold transition-colors hover:border-foreground">
-                Explore our products <ArrowRight size={16} />
+              <Link href="/software" className="flex items-center gap-3 rounded-md border border-white/30 px-5 py-3 text-sm font-semibold transition-colors hover:border-foreground">
+                Explore our software <ArrowRight size={16} />
               </Link>
             </div>
           </div>

@@ -15,3 +15,6 @@ node_modules
 .DS_Store
 .claude/
 *.tsbuildinfo
+
+# Local asset staging (prompts + raw drops for images/videos, mirrored into public/)
+projects/

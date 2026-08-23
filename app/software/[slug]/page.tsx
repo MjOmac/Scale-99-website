@@ -52,18 +52,38 @@ export default async function ProductPage({ params }: Props) {
     <>
       <SiteHeader />
       <main className="min-h-screen bg-background pt-24 text-center text-foreground lg:pt-28">
-        <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
-          <Link href="/products" className="group flex mx-auto w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
-            <ArrowLeft size={16} className="text-accent transition-transform group-hover:-translate-x-1" />
-            Back to Products
-          </Link>
+        <section className="relative overflow-hidden px-6 pb-20 pt-4 lg:px-10 lg:pb-28">
+          {product.heroVideo
+            ? (
+                <video
+                  className="absolute inset-0 h-full w-full object-cover object-center opacity-50"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  aria-hidden="true"
+                >
+                  <source src={product.heroVideo} type="video/mp4" />
+                </video>
+              )
+            : (
+                <div className="absolute inset-0 bg-grid opacity-15" />
+              )}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
 
-          <p className="mt-10 mx-auto w-fit rounded-full border border-white/15 px-3 py-1 text-xs text-muted-foreground">{product.category}</p>
-          <h1 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">{product.title}</h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-muted-foreground">{product.shortExplanation}</p>
-          <Link href="/#contact" className="mt-10 flex mx-auto w-fit items-center gap-3 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">
-            Book a demo <ArrowRight size={16} />
-          </Link>
+          <div className="relative mx-auto max-w-5xl">
+            <Link href="/software" className="group flex mx-auto w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+              <ArrowLeft size={16} className="text-accent transition-transform group-hover:-translate-x-1" />
+              Back to Software
+            </Link>
+
+            <p className="mt-10 mx-auto w-fit rounded-full border border-white/15 px-3 py-1 text-xs text-muted-foreground">{product.category}</p>
+            <h1 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">{product.title}</h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-muted-foreground">{product.shortExplanation}</p>
+            <Link href="/#contact" className="mt-10 flex mx-auto w-fit items-center gap-3 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">
+              Book a demo <ArrowRight size={16} />
+            </Link>
+          </div>
         </section>
 
         <section className="border-t border-white/10 px-6 py-20 lg:px-10 lg:py-28">

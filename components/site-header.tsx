@@ -11,12 +11,11 @@ const aboutLinks = [
 ]
 
 const whatWeDoLinks = [
-  { label: 'Products', href: '/products' },
   { label: 'Services', href: '/services' },
+  { label: 'Software', href: '/software' },
   { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Websites', href: '/websites' },
   { label: 'Industries', href: '/industries' },
-  { label: 'Blog', href: '/blog' },
 ]
 
 type MenuKey = 'about' | 'work' | null
@@ -56,6 +55,14 @@ export function SiteHeader() {
 
         <NavMenu label="About" items={aboutLinks} menuKey="about" open={open} toggle={toggle} close={close} />
         <NavMenu label="What we do" shortLabel="Work" items={whatWeDoLinks} menuKey="work" open={open} toggle={toggle} close={close} />
+
+        <Link
+          href="/blog"
+          onClick={close}
+          className="shrink-0 whitespace-nowrap text-[0.8rem] font-medium text-white transition-colors hover:text-accent sm:text-[0.83rem]"
+        >
+          Blog
+        </Link>
 
         <Link
           href="/#contact"

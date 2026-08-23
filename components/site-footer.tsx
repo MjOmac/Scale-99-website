@@ -12,8 +12,8 @@ export function SiteFooter() {
           <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
             <Link href="/about" className="transition-colors hover:text-foreground">About</Link>
             <Link href="/services" className="transition-colors hover:text-foreground">Services</Link>
-            <Link href="/products" className="transition-colors hover:text-foreground">Products</Link>
-            <Link href="/portfolio" className="transition-colors hover:text-foreground">Portfolio</Link>
+            <Link href="/software" className="transition-colors hover:text-foreground">Software</Link>
+            <Link href="/websites" className="transition-colors hover:text-foreground">Websites</Link>
             <Link href="/case-studies" className="transition-colors hover:text-foreground">Case Studies</Link>
             <Link href="/industries" className="transition-colors hover:text-foreground">Industries</Link>
             <Link href="/blog" className="transition-colors hover:text-foreground">Blog</Link>
