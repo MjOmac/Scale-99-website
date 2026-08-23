@@ -54,6 +54,37 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 }
 .nav-logo { transition: height .5s cubic-bezier(.22,1,.36,1); }
 
+/* Stat "memory cards": a flip card that idles with a slow float and turns to
+   reveal the detail on hover or keyboard focus. */
+.mem { perspective: 1400px; }
+.mem-inner {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .8s cubic-bezier(.22,1,.36,1);
+}
+.mem:hover .mem-inner, .mem:focus-within .mem-inner { transform: rotateY(180deg); }
+.mem-face {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: .375rem; padding: 1.75rem;
+  border: 1px solid rgba(255,255,255,.10);
+  background: var(--surface);
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.mem:hover .mem-face { border-color: rgba(255,106,0,.45); box-shadow: 0 18px 40px -22px rgba(0,0,0,.9); }
+.mem-back { transform: rotateY(180deg); }
+.mem-float { animation: mem-float 7s ease-in-out infinite; }
+@keyframes mem-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+/* The grid texture on the card face, dimmer than the page-level one. */
+.mem-face::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; opacity: .5; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
 /* Slow accent pulse on the floating pill. Ported from the A1/Pioneer .nav-glow,
    retuned from gold to Scale99 orange — the rim, halo, and drop shadow together
    are what make the pill read as floating above the page. */
