@@ -50,7 +50,7 @@ export default function Page() {
       <SiteHeader />
       <main className="min-h-screen bg-background text-center text-foreground">
         {/* ── Hero ─────────────────────────────────────────────── */}
-        <section id="top" className="relative flex min-h-[620px] items-end overflow-hidden border-b border-white/10 px-6 pb-20 pt-20 lg:min-h-[700px] lg:px-10 lg:pb-24">
+        <section id="top" className="relative flex min-h-[620px] items-end overflow-hidden border-b border-white/10 px-6 pb-20 pt-16 lg:min-h-[700px] lg:px-10 lg:pb-24">
           {/* Decorative background. The still acts as the poster, covering the
               buffer window and standing in if the video can't play at all. */}
           <video

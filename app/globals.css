@@ -39,20 +39,12 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 ::selection { background: var(--accent); color: var(--accent-foreground); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
-/* Nav: full-width bar at rest, collapsing into a floating Dynamic-Island-style
-   pill once the page scrolls. Easing is the easeOutQuint curve used across the
-   A1/Pioneer work, which gives the morph its quick-settle feel. */
-.nav-shell {
-  transition: padding .5s cubic-bezier(.22,1,.36,1), background-color .5s cubic-bezier(.22,1,.36,1),
-              border-color .5s cubic-bezier(.22,1,.36,1);
+/* Nav: a small, centered, always-on pill — the Dynamic Island reference,
+   not a full-width bar that later collapses. Width hugs its content
+   (inline-flex) rather than stretching to a fixed container. */
+.nav-pill {
+  transition: border-color .3s ease, box-shadow .3s ease;
 }
-.nav-bar {
-  transition: max-width .5s cubic-bezier(.22,1,.36,1), border-radius .5s cubic-bezier(.22,1,.36,1),
-              height .5s cubic-bezier(.22,1,.36,1), padding .5s cubic-bezier(.22,1,.36,1),
-              gap .5s cubic-bezier(.22,1,.36,1), background-color .5s cubic-bezier(.22,1,.36,1),
-              border-color .5s cubic-bezier(.22,1,.36,1);
-}
-.nav-logo { transition: height .5s cubic-bezier(.22,1,.36,1); }
 
 /* ── HUD Crosshair cursor ─────────────────────────────────────────────────
    The native cursor is only hidden once the component has mounted and

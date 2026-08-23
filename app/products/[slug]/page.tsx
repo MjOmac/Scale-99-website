@@ -51,7 +51,7 @@ export default async function ProductPage({ params }: Props) {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-32 text-center text-foreground lg:pt-40">
+      <main className="min-h-screen bg-background pt-24 text-center text-foreground lg:pt-28">
         <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <Link href="/products" className="group flex mx-auto w-fit items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
             <ArrowLeft size={16} className="text-accent transition-transform group-hover:-translate-x-1" />
