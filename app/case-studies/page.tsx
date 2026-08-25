@@ -1,37 +1,15 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ImageIcon } from 'lucide-react'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { products } from '@/lib/products-data'
 
 export const metadata: Metadata = {
   title: 'Case Studies — Scale99',
-  description: 'How Scale99 has helped clients replace fragmented workflows, consolidate systems, and cut operational overhead.',
+  description: 'How Scale99 has helped real clients across hospitality, construction, healthcare, marketing, and medtech—straight from the engagements behind each product.',
 }
-
-const caseStudies = [
-  {
-    client: 'Meridian',
-    title: 'A new operating system for growth.',
-    text: 'For a global financial services leader, we replaced fragmented workflows with one intelligent platform—giving every team the clarity to move faster.',
-    stat: '+42%',
-    statLabel: 'Operational lift',
-  },
-  {
-    client: 'Northstar Financial',
-    title: 'Consolidating four CRMs into one.',
-    text: 'Sales, service, and account management were split across four disconnected tools. We rebuilt it as a single CRM shaped around their actual sales cycle.',
-    stat: '1',
-    statLabel: 'System of record',
-  },
-  {
-    client: 'Atlas Group',
-    title: 'Cutting overhead through automation.',
-    text: 'Approvals and handoffs that used to take days now run on their own—freeing the team to spend time on decisions that actually need a person.',
-    stat: '-33%',
-    statLabel: 'Operational overhead',
-  },
-]
 
 export default function CaseStudiesPage() {
   return (
@@ -43,25 +21,69 @@ export default function CaseStudiesPage() {
           <h1 className="mx-auto mt-5 max-w-3xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
             Where the systems actually paid off.
           </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-7 text-muted-foreground">
+            Every product we build starts as a real client engagement. Here&apos;s what happened once each one was in production.
+          </p>
         </section>
 
         <section className="border-t border-white/10 px-6 pb-28 lg:px-10 lg:pb-40">
-          <div className="mx-auto flex max-w-5xl flex-col gap-5">
-            {caseStudies.map(study => (
-              <div key={study.client} className="flex flex-col items-center gap-8 rounded-md border border-white/10 bg-surface p-8 lg:p-10">
-                <div className="w-48 rounded border border-white/15 bg-background/80 p-6">
-                  <p className="font-heading text-4xl font-semibold text-accent">{study.stat}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{study.statLabel}</p>
+          <div className="mx-auto flex max-w-5xl flex-col gap-6">
+            {products.map(product => (
+              <Link
+                key={product.slug}
+                href={`/software/${product.slug}`}
+                className="group grid gap-0 overflow-hidden rounded-xl border border-white/10 bg-surface text-left shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10 md:grid-cols-[300px_1fr]"
+              >
+                {/* Browser-chrome thumbnail */}
+                <div className="relative overflow-hidden border-b border-white/10 bg-background md:border-b-0 md:border-r">
+                  <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  </div>
+                  <div className="relative aspect-video overflow-hidden md:aspect-auto md:h-[calc(100%-37px)]">
+                    {product.heroImage
+                      ? (
+                          <Image
+                            src={product.heroImage}
+                            alt={`${product.title} product screenshot`}
+                            fill
+                            sizes="(min-width: 768px) 300px, 100vw"
+                            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                          />
+                        )
+                      : (
+                          <div className="flex h-full w-full items-center justify-center">
+                            <div className="absolute inset-0 bg-grid opacity-20" />
+                            <ImageIcon className="relative text-muted-foreground/40" size={28} />
+                          </div>
+                        )}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{study.client}</p>
-                  <h2 className="mt-4 font-heading text-3xl font-semibold tracking-tight">{study.title}</h2>
-                  <p className="mx-auto mt-4 max-w-2xl leading-7 text-muted-foreground">{study.text}</p>
-                  <Link href="/#contact" className="mx-auto mt-6 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
-                    Talk to us about a similar project <ArrowRight size={16} />
-                  </Link>
+
+                {/* Case study content */}
+                <div className="flex flex-col p-7 lg:p-8">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="w-fit rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">{product.category}</span>
+                    <span className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-muted-foreground/50">Case study</span>
+                  </div>
+                  <h2 className="mt-4 font-heading text-2xl font-semibold leading-tight transition-colors group-hover:text-accent">{product.title}</h2>
+                  <p className="mt-2 text-sm italic leading-6 text-muted-foreground">{product.caseStudy.clientProfile}</p>
+                  <p className="mt-4 line-clamp-3 text-sm leading-6 text-foreground/90">{product.caseStudy.results}</p>
+
+                  {product.caseStudy.quote && (
+                    <blockquote className="mt-5 border-l-2 border-accent/40 pl-4">
+                      <p className="text-sm italic leading-6 text-muted-foreground">&quot;{product.caseStudy.quote.text}&quot;</p>
+                      <footer className="mt-2 text-xs font-semibold uppercase tracking-[0.1em] text-accent">{product.caseStudy.quote.attribution}</footer>
+                    </blockquote>
+                  )}
+
+                  <span className="mt-6 flex items-center gap-2 pt-1 text-sm font-semibold text-accent">
+                    Read the full case study <ArrowRight className="transition-transform group-hover:translate-x-2" size={16} />
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

@@ -1,5 +1,7 @@
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { AlertTriangle, ArrowRight, ArrowUpRight, ChevronDown, Lightbulb, TrendingUp, Users } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
+import { HomeServicesPreview } from '@/components/home-services-preview'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { products } from '@/lib/products-data'
@@ -10,19 +12,39 @@ const stats = [
   { headline: 'Simpler', label: 'Fewer steps, more work', detail: 'Fewer handoffs and approvals—systems that just run on their own.', accent: false },
 ]
 
-const services = [
-  { number: '01', title: 'Automation Tools' },
-  { number: '02', title: 'CRM Solutions' },
-  { number: '03', title: 'Database Management' },
-  { number: '04', title: 'Custom Software' },
-  { number: '05', title: 'UI/UX Design' },
-  { number: '06', title: 'Websites & SEO' },
+// The three products that lead the /software grid, and the one whose case study
+// gets the full treatment further down the page.
+const featuredProducts = products.slice(0, 3)
+const featuredCaseStudy = products[0]
+
+// Mirrors the first three cards on /websites.
+const featuredWebsites = [
+  { client: 'Lanyardy', category: 'Manufacturing & Print', image: '/websites/lanyardy.jpeg' },
+  { client: 'Auckland Construction', category: 'Construction', image: '/websites/aucklandcd.jpeg' },
+  { client: 'M&M Marketing', category: 'Marketing Agency', image: '/websites/mnmagency.jpeg' },
 ]
 
-const work = [
-  { client: 'Meridian', title: 'A new operating system for growth.', stat: '+42%', statLabel: 'Operational lift', tone: 'from-orange-500/40 via-zinc-900 to-zinc-950' },
-  { client: 'Northstar Financial', title: 'Four CRMs consolidated into one.', stat: '1', statLabel: 'System of record', tone: 'from-slate-500/40 via-zinc-900 to-zinc-950' },
-  { client: 'Atlas Group', title: 'Overhead cut through automation.', stat: '-33%', statLabel: 'Operational overhead', tone: 'from-orange-950 via-zinc-900 to-zinc-950' },
+// Same coordinates as the interactive map on /industries — x is relationship
+// intensity, y is how regulated the sector is.
+const industryNodes = [
+  { title: 'Medical & Pharmaceutical', x: 38, y: 90, count: 2 },
+  { title: 'Education', x: 42, y: 68, count: 0 },
+  { title: 'Construction & Furnishing', x: 72, y: 58, count: 3 },
+  { title: 'Event & Venue', x: 85, y: 30, count: 0 },
+  { title: 'Marketing Agencies', x: 68, y: 18, count: 1 },
+]
+
+const partners = [
+  { name: 'Brightline Cloud', category: 'Infrastructure & hosting' },
+  { name: 'Ledgerway', category: 'Payments & billing' },
+  { name: 'Fieldstone Data', category: 'Data & analytics' },
+  { name: 'Corsair CRM', category: 'CRM platform' },
+]
+
+const posts = [
+  { type: 'Perspective', title: 'The operating model is the product.', date: '06.12.26' },
+  { type: 'Field notes', title: 'What scale actually feels like.', date: '05.28.26' },
+  { type: 'Briefing', title: 'The new rules of useful AI.', date: '05.14.26' },
 ]
 
 const testimonials = [
@@ -136,7 +158,8 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ── Services ─────────────────────────────────────────── */}
+        {/* ── Services → /services ─────────────────────────────
+            Borrows the tab-list + chrome window pairing from the services page. */}
         <section id="services" className="mx-auto max-w-5xl px-6 py-24 lg:px-10 lg:py-32">
           <p className="eyebrow">What we do</p>
           <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -145,86 +168,284 @@ export default function Page() {
           <p className="mx-auto mt-6 max-w-2xl leading-7 text-muted-foreground">
             Six services, delivered by one team from first conversation through post-launch support.
           </p>
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map(service => (
-              <Link
-                key={service.number}
-                href="/services"
-                className="group flex flex-col items-center rounded-md border border-white/10 bg-surface p-7 transition-colors hover:border-accent/40"
-              >
-                <span className="font-mono text-xs text-accent">{service.number}</span>
-                <h3 className="mt-4 font-heading text-lg font-semibold transition-colors group-hover:text-accent">{service.title}</h3>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-12 flex flex-wrap justify-center gap-6">
-            <Link href="/services" className="flex items-center gap-3 text-sm font-semibold text-accent">
-              All services <ArrowRight size={16} />
-            </Link>
-            <Link href="/software" className="flex items-center gap-3 text-sm font-semibold text-accent">
-              See the {products.length} software products we&apos;ve shipped <ArrowRight size={16} />
-            </Link>
-          </div>
+
+          <HomeServicesPreview />
         </section>
 
-        {/* ── Work: portfolio + case studies ───────────────────── */}
-        <section id="work" className="border-y border-white/10 bg-surface px-6 py-24 lg:px-10 lg:py-32">
+        {/* ── Software → /software ─────────────────────────────
+            Borrows the browser-chrome product cards from the software index. */}
+        <section id="software" className="border-y border-white/10 bg-surface px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-5xl">
-            <p className="eyebrow">Our work</p>
+            <p className="eyebrow">Software</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              Where the systems actually paid off.
+              Built for real businesses. Proven in production.
             </h2>
-            <div className="mt-14 grid gap-5 md:grid-cols-3">
-              {work.map(item => (
+            <p className="mx-auto mt-6 max-w-2xl leading-7 text-muted-foreground">
+              {products.length} products, each one born out of a real client engagement before it became something we offer anyone else.
+            </p>
+
+            <div className="mt-14 grid gap-6 md:grid-cols-3">
+              {featuredProducts.map(product => (
                 <Link
-                  key={item.client}
-                  href="/case-studies"
-                  className={`group relative flex min-h-72 flex-col justify-end overflow-hidden rounded-md bg-gradient-to-br ${item.tone} p-7`}
+                  key={product.slug}
+                  href={`/software/${product.slug}`}
+                  className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-background text-left shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10"
                 >
-                  <div className="absolute inset-0 bg-grid opacity-20 transition-opacity group-hover:opacity-40" />
-                  <div className="relative">
-                    <p className="font-heading text-4xl font-semibold text-accent">{item.stat}</p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">{item.statLabel}</p>
-                    <h3 className="mt-6 font-heading text-lg font-semibold leading-tight">{item.title}</h3>
-                    <p className="mt-2 text-xs font-semibold uppercase tracking-[0.18em] text-accent">{item.client}</p>
+                  <div className="relative overflow-hidden border-b border-white/10">
+                    <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    </div>
+                    <div className="relative aspect-video overflow-hidden">
+                      {product.heroImage && (
+                        <Image
+                          src={product.heroImage}
+                          alt={`${product.title} product screenshot`}
+                          fill
+                          sizes="(min-width: 768px) 33vw, 100vw"
+                          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                        />
+                      )}
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                    </div>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <span className="w-fit rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">{product.category}</span>
+                    <h3 className="mt-4 font-heading text-xl font-semibold leading-tight transition-colors group-hover:text-accent">{product.title}</h3>
+                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">{product.shortExplanation}</p>
+                    <span className="mt-auto flex items-center gap-2 pt-5 text-sm font-semibold text-accent">
+                      Read case study <ArrowRight className="transition-transform group-hover:translate-x-2" size={16} />
+                    </span>
                   </div>
                 </Link>
               ))}
             </div>
-            <div className="mt-12 flex flex-wrap justify-center gap-6">
-              <Link href="/case-studies" className="flex items-center gap-3 text-sm font-semibold text-accent">
-                Read the case studies <ArrowRight size={16} />
-              </Link>
-              <Link href="/websites" className="flex items-center gap-3 text-sm font-semibold text-accent">
-                Browse the websites <ArrowRight size={16} />
-              </Link>
-            </div>
+
+            <Link href="/software" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+              See all {products.length} products <ArrowRight size={16} />
+            </Link>
           </div>
         </section>
 
-        {/* ── Testimonials ─────────────────────────────────────── */}
-        <section id="testimonials" className="mx-auto max-w-5xl px-6 py-24 lg:px-10 lg:py-32">
-          <p className="eyebrow">Customer testimonials</p>
+        {/* ── Case study → /case-studies ───────────────────────
+            Borrows the four-step flowchart from an individual case study page. */}
+        <section id="work" className="mx-auto max-w-5xl px-6 py-24 lg:px-10 lg:py-32">
+          <p className="eyebrow">Case studies</p>
           <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-            A better way forward.
+            Where the systems actually paid off.
           </h2>
-          <div className="mt-14 grid gap-5 md:grid-cols-2">
-            {testimonials.map(t => (
-              <blockquote key={t.name} className="rounded-md border border-white/10 bg-surface p-8">
-                <p className="font-heading text-xl font-semibold leading-snug tracking-tight">&quot;{t.quote}&quot;</p>
-                <footer className="mt-6 text-sm font-semibold text-accent">
-                  — {t.name}, <span className="font-normal text-muted-foreground">{t.role}</span>
-                </footer>
-              </blockquote>
+          <p className="mx-auto mt-6 max-w-2xl leading-7 text-muted-foreground">
+            Every engagement runs the same four steps. Here&apos;s how it went for {featuredCaseStudy.title}.
+          </p>
+
+          <div className="mt-14 space-y-6 text-left">
+            {[
+              { heading: 'Client Profile', body: featuredCaseStudy.caseStudy.clientProfile, icon: Users },
+              { heading: 'The Challenge', body: featuredCaseStudy.caseStudy.challenge, icon: AlertTriangle },
+              { heading: 'The Solution', body: featuredCaseStudy.caseStudy.solution, icon: Lightbulb },
+              { heading: 'The Results', body: featuredCaseStudy.caseStudy.results, icon: TrendingUp },
+            ].map((step, i, arr) => (
+              <div key={step.heading} className="relative flex items-start gap-5 sm:gap-6">
+                <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-accent bg-background text-accent shadow-lg shadow-accent/20">
+                  <step.icon size={22} />
+                </div>
+                {i < arr.length - 1 && (
+                  <>
+                    <span className="absolute left-7 top-14 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-accent/60 to-accent/10" />
+                    <ChevronDown className="absolute left-7 top-[3.5rem] -translate-x-1/2 text-accent/50" size={14} />
+                  </>
+                )}
+                <div className="flex-1 rounded-md border border-white/10 bg-surface p-6 transition-colors hover:border-accent/30 sm:p-7">
+                  <p className="font-mono text-xs text-accent">STEP {String(i + 1).padStart(2, '0')}</p>
+                  <h3 className="mt-1 font-heading text-xl font-semibold">{step.heading}</h3>
+                  <p className="mt-3 line-clamp-3 leading-7 text-muted-foreground">{step.body}</p>
+                </div>
+              </div>
             ))}
           </div>
-          <Link href="/testimonials" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
-            All testimonials <ArrowRight size={16} />
+
+          <Link href="/case-studies" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+            Read every case study <ArrowRight size={16} />
           </Link>
         </section>
 
+        {/* ── Websites → /websites ─────────────────────────────
+            Borrows the live-site mockup cards from the websites page. */}
+        <section id="websites" className="border-y border-white/10 bg-surface px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-5xl">
+            <p className="eyebrow">Websites</p>
+            <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+              Built for the real world.
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl leading-7 text-muted-foreground">
+              Live sites we&apos;ve designed and shipped—from manufacturing and construction to marketing studios.
+            </p>
+
+            <div className="mt-14 grid gap-6 md:grid-cols-3">
+              {featuredWebsites.map(site => (
+                <Link
+                  key={site.client}
+                  href="/websites"
+                  className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-background text-left shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10"
+                >
+                  <div className="relative overflow-hidden border-b border-white/10">
+                    <div className="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.03] px-4 py-2.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    </div>
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <Image
+                        src={site.image}
+                        alt={`${site.client} website mockup`}
+                        fill
+                        sizes="(min-width: 768px) 33vw, 100vw"
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 p-5">
+                    <div>
+                      <h3 className="font-heading text-base font-semibold leading-tight transition-colors group-hover:text-accent">{site.client}</h3>
+                      <p className="mt-1 text-xs text-muted-foreground">{site.category}</p>
+                    </div>
+                    <ArrowUpRight className="shrink-0 text-muted-foreground/50 transition-colors group-hover:text-accent" size={16} />
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <Link href="/websites" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+              See every site we&apos;ve built <ArrowRight size={16} />
+            </Link>
+          </div>
+        </section>
+
+        {/* ── Industries → /industries ─────────────────────────
+            Borrows the two-axis positioning map from the industries page. */}
+        <section id="industries" className="mx-auto max-w-5xl px-6 py-24 lg:px-10 lg:py-32">
+          <p className="eyebrow">Industries</p>
+          <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+            Sector experience where regulation and relationships matter most.
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl leading-7 text-muted-foreground">
+            Every sector needs different guardrails. We plot ours by how regulated the work is and how much it runs on relationships.
+          </p>
+
+          <Link
+            href="/industries"
+            className="group relative mt-14 block overflow-hidden rounded-xl border border-white/10 bg-surface p-6 transition-colors hover:border-accent/40 sm:p-10"
+          >
+            <div className="absolute inset-0 bg-grid opacity-10" />
+            <div className="relative mx-auto aspect-[16/9] max-w-2xl">
+              <p className="absolute -top-1 left-1/2 -translate-x-1/2 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                More regulated
+              </p>
+              <div className="absolute inset-x-0 top-1/2 h-px bg-white/10" />
+              <div className="absolute inset-y-0 left-1/2 w-px bg-white/10" />
+              {industryNodes.map(node => (
+                <span key={node.title} className="absolute -translate-x-1/2 translate-y-1/2" style={{ left: `${node.x}%`, bottom: `${node.y}%` }}>
+                  <span
+                    className={`flex h-5 w-5 items-center justify-center rounded-full border-2 font-mono text-[0.6rem] font-bold transition-transform duration-300 group-hover:scale-110 ${
+                      node.count > 0 ? 'border-accent bg-background text-accent' : 'border-dashed border-white/30 bg-background'
+                    }`}
+                  >
+                    {node.count > 0 ? node.count : ''}
+                  </span>
+                  <span className="absolute left-1/2 top-full mt-2 w-max max-w-[7rem] -translate-x-1/2 text-center text-[0.7rem] font-medium leading-tight text-foreground/80">
+                    {node.title}
+                  </span>
+                </span>
+              ))}
+            </div>
+            <span className="relative mx-auto mt-6 flex w-fit items-center gap-2 text-sm font-semibold text-accent">
+              Explore the map <ArrowRight className="transition-transform group-hover:translate-x-2" size={16} />
+            </span>
+          </Link>
+        </section>
+
+        {/* ── Testimonials → /testimonials ─────────────────────── */}
+        <section id="testimonials" className="border-y border-white/10 bg-surface px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-5xl">
+            <p className="eyebrow">Customer testimonials</p>
+            <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+              A better way forward.
+            </h2>
+            <div className="mt-14 grid gap-5 md:grid-cols-2">
+              {testimonials.map(t => (
+                <blockquote key={t.name} className="rounded-md border border-white/10 bg-background p-8">
+                  <p className="font-heading text-xl font-semibold leading-snug tracking-tight">&quot;{t.quote}&quot;</p>
+                  <footer className="mt-6 text-sm font-semibold text-accent">
+                    — {t.name}, <span className="font-normal text-muted-foreground">{t.role}</span>
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
+            <Link href="/testimonials" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+              All testimonials <ArrowRight size={16} />
+            </Link>
+          </div>
+        </section>
+
+        {/* ── Partners → /partners ─────────────────────────────── */}
+        <section id="partners" className="mx-auto max-w-5xl px-6 py-24 lg:px-10 lg:py-32">
+          <p className="eyebrow">Partners</p>
+          <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+            Built with a network we trust.
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl leading-7 text-muted-foreground">
+            The platforms and infrastructure partners we integrate with when a project calls for it.
+          </p>
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {partners.map(partner => (
+              <Link
+                key={partner.name}
+                href="/partners"
+                className="group flex min-h-40 flex-col items-center justify-center gap-3 rounded-md border border-white/10 bg-surface p-7 transition-colors hover:border-accent/40"
+              >
+                <p className="font-heading text-lg font-semibold transition-colors group-hover:text-accent">{partner.name}</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{partner.category}</p>
+              </Link>
+            ))}
+          </div>
+          <Link href="/partners" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+            Meet our partners <ArrowRight size={16} />
+          </Link>
+        </section>
+
+        {/* ── Blog → /blog ─────────────────────────────────────── */}
+        <section id="blog" className="border-y border-white/10 bg-surface px-6 py-24 lg:px-10 lg:py-32">
+          <div className="mx-auto max-w-5xl">
+            <p className="eyebrow">From the field</p>
+            <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+              Useful thinking.
+            </h2>
+            <div className="mt-14 grid gap-5 md:grid-cols-3">
+              {posts.map(post => (
+                <Link
+                  key={post.title}
+                  href="/blog"
+                  className="group flex flex-col rounded-md border border-white/10 bg-background p-7 text-left transition-colors hover:border-accent/40"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{post.type}</p>
+                  <h3 className="mt-5 font-heading text-xl font-semibold leading-tight transition-colors group-hover:text-accent">{post.title}</h3>
+                  <div className="mt-auto flex items-center gap-3 pt-10 text-xs text-muted-foreground">
+                    <span>{post.date}</span>
+                    <ArrowRight size={16} className="text-accent transition-transform group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <Link href="/blog" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+              Read the blog <ArrowRight size={16} />
+            </Link>
+          </div>
+        </section>
+
         {/* ── FAQ ──────────────────────────────────────────────── */}
-        <section id="faq" className="border-y border-white/10 bg-surface px-6 py-24 lg:px-10 lg:py-32">
+        <section id="faq" className="px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-3xl">
             <p className="eyebrow">FAQ</p>
             <h2 className="mt-5 font-heading text-4xl font-semibold tracking-tight sm:text-5xl">Common questions.</h2>

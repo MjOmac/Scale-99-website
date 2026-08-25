@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { AlertTriangle, ArrowLeft, ArrowRight, ChevronDown, Lightbulb, TrendingUp, Users } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -42,10 +42,10 @@ export default async function ProductPage({ params }: Props) {
 
   const { caseStudy } = product
   const caseStudySections = [
-    { heading: 'Client Profile', body: caseStudy.clientProfile },
-    { heading: 'The Challenge', body: caseStudy.challenge },
-    { heading: 'The Solution', body: caseStudy.solution },
-    { heading: 'The Results', body: caseStudy.results },
+    { heading: 'Client Profile', body: caseStudy.clientProfile, icon: Users },
+    { heading: 'The Challenge', body: caseStudy.challenge, icon: AlertTriangle },
+    { heading: 'The Solution', body: caseStudy.solution, icon: Lightbulb },
+    { heading: 'The Results', body: caseStudy.results, icon: TrendingUp },
   ]
 
   return (
@@ -94,9 +94,14 @@ export default async function ProductPage({ params }: Props) {
               {product.highlights.map((highlight, i) => {
                 const { label, detail } = splitHighlight(highlight)
                 return (
-                  <div key={highlight} className="rounded-md border border-white/10 bg-surface p-7 transition-colors hover:border-accent/40">
-                    <span className="font-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}</span>
-                    {label && <h3 className="mt-4 font-heading text-xl font-semibold leading-tight">{label}</h3>}
+                  <div
+                    key={highlight}
+                    className="group relative origin-center rounded-md border border-white/10 bg-surface p-7 transition-all duration-300 [transition-timing-function:cubic-bezier(.34,1.56,.64,1)] hover:z-10 hover:scale-[1.15] hover:border-accent/50 hover:bg-background hover:shadow-2xl hover:shadow-accent/20"
+                  >
+                    <span className="inline-block font-mono text-xs text-accent transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-125">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    {label && <h3 className="mt-4 font-heading text-xl font-semibold leading-tight transition-colors group-hover:text-accent">{label}</h3>}
                     <p className={`text-sm leading-6 text-muted-foreground ${label ? 'mt-3' : 'mt-4'}`}>{detail}</p>
                   </div>
                 )
@@ -110,11 +115,23 @@ export default async function ProductPage({ params }: Props) {
             <p className="eyebrow">Case study</p>
             <h2 className="mt-5 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">How it played out.</h2>
 
-            <div className="mt-14 divide-y divide-white/10 border-y border-white/10">
-              {caseStudySections.map(section => (
-                <div key={section.heading} className="py-8">
-                  <h3 className="font-heading text-xl font-semibold">{section.heading}</h3>
-                  <p className="mx-auto mt-4 max-w-2xl leading-7 text-muted-foreground">{section.body}</p>
+            <div className="mt-14 space-y-8 text-left">
+              {caseStudySections.map((section, i) => (
+                <div key={section.heading} className="relative flex items-start gap-5 sm:gap-6">
+                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-accent bg-background text-accent shadow-lg shadow-accent/20">
+                    <section.icon size={22} />
+                  </div>
+                  {i < caseStudySections.length - 1 && (
+                    <>
+                      <span className="absolute left-7 top-14 h-8 w-px -translate-x-1/2 bg-gradient-to-b from-accent/60 to-accent/10" />
+                      <ChevronDown className="absolute left-7 top-[3.75rem] -translate-x-1/2 text-accent/50" size={14} />
+                    </>
+                  )}
+                  <div className="flex-1 rounded-md border border-white/10 bg-background p-6 transition-colors hover:border-accent/30 sm:p-7">
+                    <p className="font-mono text-xs text-accent">STEP {String(i + 1).padStart(2, '0')}</p>
+                    <h3 className="mt-1 font-heading text-xl font-semibold">{section.heading}</h3>
+                    <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">{section.body}</p>
+                  </div>
                 </div>
               ))}
             </div>
