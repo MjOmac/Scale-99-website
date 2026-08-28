@@ -30,8 +30,8 @@ export function IndustriesMap() {
 
   return (
     <div className="mt-16 text-left">
-      {/* ── The map ──────────────────────────────────────────── */}
-      <div className="relative overflow-hidden rounded-xl border border-white/10 bg-surface p-6 sm:p-10">
+      {/* ── The map (sm+): a scatter plot needs room labels won't collide in below ~640px. */}
+      <div className="relative hidden overflow-hidden rounded-xl border border-white/10 bg-surface p-6 sm:block sm:p-10">
         <div className="absolute inset-0 bg-grid opacity-10" />
 
         <div className="relative mx-auto aspect-[16/10] max-w-3xl">
@@ -87,6 +87,37 @@ export function IndustriesMap() {
             )
           })}
         </div>
+      </div>
+
+      {/* ── The list (below sm): same nodes, same tap-to-select behavior, no overlap risk. */}
+      <div className="flex flex-col gap-2 sm:hidden">
+        {industries.map(ind => {
+          const isActive = ind.id === activeId
+          const hasProducts = ind.productSlugs.length > 0
+          return (
+            <button
+              key={ind.id}
+              onClick={() => setActiveId(prev => (prev === ind.id ? null : ind.id))}
+              aria-pressed={isActive}
+              className={`flex w-full items-center gap-4 rounded-lg border px-4 py-3 text-left transition-colors ${
+                isActive ? 'border-accent/40 bg-surface' : 'border-white/10 bg-surface/50'
+              }`}
+            >
+              <span
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 font-mono text-xs font-bold ${
+                  isActive
+                    ? 'border-accent bg-accent text-accent-foreground'
+                    : hasProducts
+                      ? 'border-accent bg-background text-accent'
+                      : 'border-dashed border-white/30 bg-background text-muted-foreground/60'
+                }`}
+              >
+                {hasProducts ? ind.productSlugs.length : ''}
+              </span>
+              <span className={`text-sm font-medium ${isActive ? 'text-accent' : 'text-foreground/80'}`}>{ind.title}</span>
+            </button>
+          )
+        })}
       </div>
 
       <p className="mx-auto mt-6 max-w-lg text-center text-xs leading-5 text-muted-foreground">

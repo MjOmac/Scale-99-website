@@ -71,7 +71,7 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   transform-style: preserve-3d;
   transition: transform .8s cubic-bezier(.22,1,.36,1);
 }
-.mem:hover .mem-inner, .mem:focus-within .mem-inner { transform: rotateY(180deg); }
+.mem:hover .mem-inner, .mem:focus-within .mem-inner, .mem.is-flipped .mem-inner { transform: rotateY(180deg); }
 .mem-face {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -81,7 +81,7 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   background: var(--surface);
   transition: border-color .3s ease, box-shadow .3s ease;
 }
-.mem:hover .mem-face { border-color: rgba(255,106,0,.45); box-shadow: 0 18px 40px -22px rgba(0,0,0,.9); }
+.mem:hover .mem-face, .mem.is-flipped .mem-face { border-color: rgba(255,106,0,.45); box-shadow: 0 18px 40px -22px rgba(0,0,0,.9); }
 .mem-back { transform: rotateY(180deg); }
 .mem-float { animation: mem-float 7s ease-in-out infinite; }
 @keyframes mem-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
@@ -92,6 +92,17 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
     linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
   background-size: 32px 32px;
+}
+
+/* Fades the trailing edge of a horizontally-scrollable strip so a row that
+   overflows the viewport (e.g. the mobile service tab-list) reads as
+   scrollable instead of just clipped. Only needed below the breakpoint
+   where the strip switches to a vertical, non-scrolling layout. */
+@media (max-width: 1023px) {
+  .scroll-fade-x {
+    mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
+  }
 }
 
 /* Slow accent pulse on the floating pill. Ported from the A1/Pioneer .nav-glow,

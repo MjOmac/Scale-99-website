@@ -1,6 +1,7 @@
 import { AlertTriangle, ArrowRight, ArrowUpRight, ChevronDown, Lightbulb, TrendingUp, Users } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { FlipStatCard } from '@/components/flip-stat-card'
 import { HomeServicesPreview } from '@/components/home-services-preview'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
@@ -122,18 +123,15 @@ export default function Page() {
          
           <div className="mt-14 grid gap-5 sm:grid-cols-3">
             {stats.map((stat, i) => (
-              <div key={stat.label} tabIndex={0} className="mem mem-float h-56 rounded-md outline-none" style={{ animationDelay: `${i * 0.9}s` }}>
-                <div className="mem-inner">
-                  <div className="mem-face">
-                    <span className="relative font-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}</span>
-                    <p className={`relative mt-3 font-heading text-3xl font-semibold ${stat.accent ? 'text-accent' : 'text-foreground'}`}>{stat.headline}</p>
-                    <p className="relative mt-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">{stat.label}</p>
-                  </div>
-                  <div className="mem-face mem-back">
-                    <p className="relative text-sm leading-6 text-muted-foreground">{stat.detail}</p>
-                  </div>
-                </div>
-              </div>
+              <FlipStatCard
+                key={stat.label}
+                index={i}
+                headline={stat.headline}
+                label={stat.label}
+                detail={stat.detail}
+                accent={stat.accent}
+                animationDelay={`${i * 0.9}s`}
+              />
             ))}
           </div>
         </section>
@@ -339,7 +337,8 @@ export default function Page() {
             className="group relative mt-14 block overflow-hidden rounded-xl border border-white/10 bg-surface p-6 transition-colors hover:border-accent/40 sm:p-10"
           >
             <div className="absolute inset-0 bg-grid opacity-10" />
-            <div className="relative mx-auto aspect-[16/9] max-w-2xl">
+            {/* Scatter plot (sm+): needs room labels won't collide in below ~640px. */}
+            <div className="relative mx-auto hidden aspect-[16/9] max-w-2xl sm:block">
               <p className="absolute -top-1 left-1/2 -translate-x-1/2 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                 More regulated
               </p>
@@ -357,6 +356,21 @@ export default function Page() {
                   <span className="absolute left-1/2 top-full mt-2 w-max max-w-[7rem] -translate-x-1/2 text-center text-[0.7rem] font-medium leading-tight text-foreground/80">
                     {node.title}
                   </span>
+                </span>
+              ))}
+            </div>
+            {/* List (below sm): same nodes, no overlap risk. */}
+            <div className="relative flex flex-col gap-2 sm:hidden">
+              {industryNodes.map(node => (
+                <span key={node.title} className="flex items-center gap-4 rounded-lg border border-white/10 bg-background/40 px-4 py-3">
+                  <span
+                    className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 font-mono text-[0.6rem] font-bold ${
+                      node.count > 0 ? 'border-accent bg-background text-accent' : 'border-dashed border-white/30 bg-background'
+                    }`}
+                  >
+                    {node.count > 0 ? node.count : ''}
+                  </span>
+                  <span className="text-sm font-medium text-foreground/80">{node.title}</span>
                 </span>
               ))}
             </div>

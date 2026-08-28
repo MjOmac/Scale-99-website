@@ -19,7 +19,7 @@ export function HomeServicesPreview() {
 
   return (
     <div className="mt-14 grid gap-6 text-left lg:grid-cols-[220px_1fr] lg:items-start lg:gap-8">
-      <div className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
+      <div className="scroll-fade-x flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
         {services.map((s, i) => (
           <button
             key={s.number}

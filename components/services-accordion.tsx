@@ -18,7 +18,7 @@ export function ServicesAccordion() {
         {/* Tab list — a left-hand sidebar on desktop, sticky below the floating nav so
             the active service can be switched without scrolling and without ever
             covering the content. Collapses to a horizontal scroll row on mobile. */}
-        <div className="flex gap-2 overflow-x-auto pb-1 lg:sticky lg:top-24 lg:flex-col lg:overflow-visible lg:pb-0">
+        <div className="scroll-fade-x flex gap-2 overflow-x-auto pb-1 lg:sticky lg:top-24 lg:flex-col lg:overflow-visible lg:pb-0">
           {services.map((s, i) => (
             <button
               key={s.number}
