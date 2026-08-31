@@ -32,9 +32,11 @@ export function IndustriesMap() {
     <div className="mt-16 text-left">
       {/* ── The map (sm+): a scatter plot needs room labels won't collide in below ~640px. */}
       <div className="relative hidden overflow-hidden rounded-xl border border-white/10 bg-surface p-6 sm:block sm:p-10">
-        <div className="absolute inset-0 bg-grid opacity-10" />
+        {/* Soft accent glow behind the origin, plus a masked grid so the plot reads as a data surface, not a void. */}
+        <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 55% 55% at 50% 50%, rgba(255,106,0,0.09), transparent 70%)' }} />
+        <div className="pointer-events-none absolute inset-0 plot-grid" />
 
-        <div className="relative mx-auto aspect-[16/10] max-w-3xl">
+        <div className="relative mx-auto aspect-[16/9] max-w-3xl">
           {/* Axis labels */}
           <p className="absolute -top-2 left-1/2 -translate-x-1/2 text-center text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
             More regulated / structured
@@ -49,43 +51,68 @@ export function IndustriesMap() {
             Relationship-driven
           </p>
 
-          {/* Quadrant crosshair */}
-          <div className="absolute inset-x-0 top-1/2 h-px bg-white/10" />
-          <div className="absolute inset-y-0 left-1/2 w-px bg-white/10" />
+          {/* Quadrant crosshair, faded toward its tips so the origin reads as the focal point */}
+          <div className="absolute inset-x-0 top-1/2 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,.16) 15%, rgba(255,255,255,.16) 85%, transparent)' }} />
+          <div className="absolute inset-y-0 left-1/2 w-px" style={{ background: 'linear-gradient(180deg, transparent, rgba(255,255,255,.16) 15%, rgba(255,255,255,.16) 85%, transparent)' }} />
 
-          {/* Nodes */}
+          {/* Tick marks at the quarter points of each axis */}
+          {[25, 75].map(pos => (
+            <div key={`tx${pos}`} className="absolute top-1/2 h-2 w-px -translate-y-1/2 bg-white/15" style={{ left: `${pos}%` }} />
+          ))}
+          {[25, 75].map(pos => (
+            <div key={`ty${pos}`} className="absolute left-1/2 h-px w-2 -translate-x-1/2 bg-white/15" style={{ bottom: `${pos}%` }} />
+          ))}
+
+          {/* Nodes, each grounded to both axes by a dotted drop-guide */}
           {industries.map(ind => {
             const isActive = ind.id === activeId
             const hasProducts = ind.productSlugs.length > 0
+            const guideOpacity = isActive ? 'border-accent/50' : 'border-white/10'
             return (
-              <button
-                key={ind.id}
-                onClick={() => setActiveId(prev => (prev === ind.id ? null : ind.id))}
-                className="group absolute -translate-x-1/2 translate-y-1/2 outline-none"
-                style={{ left: `${ind.x}%`, bottom: `${ind.y}%` }}
-              >
-                <span
-                  className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-300 ${
-                    isActive ? 'h-16 w-16 bg-accent/15' : 'h-4 w-4 bg-transparent group-hover:h-10 group-hover:w-10 group-hover:bg-accent/10'
-                  }`}
+              <div key={ind.id}>
+                <div
+                  className={`pointer-events-none absolute bottom-0 border-l border-dashed transition-colors duration-300 ${guideOpacity}`}
+                  style={{ left: `${ind.x}%`, height: `${ind.y}%` }}
                 />
-                <span
-                  className={`relative flex items-center justify-center rounded-full border-2 font-mono text-[0.6rem] font-bold transition-all duration-300 ${
-                    isActive
-                      ? 'h-7 w-7 border-accent bg-accent text-accent-foreground shadow-lg shadow-accent/40'
-                      : hasProducts
-                        ? 'h-5 w-5 border-accent bg-background text-accent group-hover:h-6 group-hover:w-6'
-                        : 'h-5 w-5 border-dashed border-white/30 bg-background text-muted-foreground/60 group-hover:border-white/50'
-                  }`}
+                <div
+                  className={`pointer-events-none absolute border-t border-dashed transition-colors duration-300 ${guideOpacity}`}
+                  style={{
+                    bottom: `${ind.y}%`,
+                    left: `${Math.min(50, ind.x)}%`,
+                    width: `${Math.abs(ind.x - 50)}%`,
+                  }}
+                />
+                <button
+                  onClick={() => setActiveId(prev => (prev === ind.id ? null : ind.id))}
+                  className="group absolute -translate-x-1/2 translate-y-1/2 outline-none"
+                  style={{ left: `${ind.x}%`, bottom: `${ind.y}%` }}
                 >
-                  {hasProducts ? ind.productSlugs.length : ''}
-                </span>
-                <span className={`pointer-events-none absolute left-1/2 top-full mt-2 w-max max-w-[7.5rem] -translate-x-1/2 text-center text-xs font-medium leading-tight transition-colors sm:max-w-[9rem] ${isActive ? 'text-accent' : 'text-foreground/80 group-hover:text-foreground'}`}>
-                  {ind.title}
-                </span>
-              </button>
+                  <span
+                    className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-300 ${
+                      isActive ? 'h-16 w-16 bg-accent/15' : hasProducts ? 'h-9 w-9 bg-accent/10 group-hover:h-11 group-hover:w-11 group-hover:bg-accent/15' : 'h-4 w-4 bg-transparent group-hover:h-10 group-hover:w-10 group-hover:bg-accent/10'
+                    }`}
+                  />
+                  <span
+                    className={`relative flex items-center justify-center rounded-full border-2 font-mono text-[0.6rem] font-bold transition-all duration-300 ${
+                      isActive
+                        ? 'h-7 w-7 border-accent bg-accent text-accent-foreground shadow-lg shadow-accent/40'
+                        : hasProducts
+                          ? 'h-5 w-5 border-accent bg-background text-accent shadow-[0_0_10px_-2px_rgba(255,106,0,0.65)] group-hover:h-6 group-hover:w-6'
+                          : 'h-5 w-5 border-dashed border-white/30 bg-background text-muted-foreground/60 group-hover:border-white/50'
+                    }`}
+                  >
+                    {hasProducts ? ind.productSlugs.length : '+'}
+                  </span>
+                  <span className={`pointer-events-none absolute left-1/2 top-full mt-2 w-max max-w-[7.5rem] -translate-x-1/2 text-center text-xs font-medium leading-tight transition-colors sm:max-w-[9rem] ${isActive ? 'text-accent' : 'text-foreground/80 group-hover:text-foreground'}`}>
+                    {ind.title}
+                  </span>
+                </button>
+              </div>
             )
           })}
+
+          {/* Origin marker */}
+          <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/25" />
         </div>
       </div>
 

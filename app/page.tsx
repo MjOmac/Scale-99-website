@@ -336,28 +336,40 @@ export default function Page() {
             href="/industries"
             className="group relative mt-14 block overflow-hidden rounded-xl border border-white/10 bg-surface p-6 transition-colors hover:border-accent/40 sm:p-10"
           >
-            <div className="absolute inset-0 bg-grid opacity-10" />
+            <div className="pointer-events-none absolute inset-0" style={{ background: 'radial-gradient(ellipse 55% 55% at 50% 50%, rgba(255,106,0,0.08), transparent 70%)' }} />
+            <div className="pointer-events-none absolute inset-0 plot-grid" />
             {/* Scatter plot (sm+): needs room labels won't collide in below ~640px. */}
             <div className="relative mx-auto hidden aspect-[16/9] max-w-2xl sm:block">
               <p className="absolute -top-1 left-1/2 -translate-x-1/2 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                 More regulated
               </p>
-              <div className="absolute inset-x-0 top-1/2 h-px bg-white/10" />
-              <div className="absolute inset-y-0 left-1/2 w-px bg-white/10" />
+              <div className="absolute inset-x-0 top-1/2 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,.16) 15%, rgba(255,255,255,.16) 85%, transparent)' }} />
+              <div className="absolute inset-y-0 left-1/2 w-px" style={{ background: 'linear-gradient(180deg, transparent, rgba(255,255,255,.16) 15%, rgba(255,255,255,.16) 85%, transparent)' }} />
               {industryNodes.map(node => (
-                <span key={node.title} className="absolute -translate-x-1/2 translate-y-1/2" style={{ left: `${node.x}%`, bottom: `${node.y}%` }}>
-                  <span
-                    className={`flex h-5 w-5 items-center justify-center rounded-full border-2 font-mono text-[0.6rem] font-bold transition-transform duration-300 group-hover:scale-110 ${
-                      node.count > 0 ? 'border-accent bg-background text-accent' : 'border-dashed border-white/30 bg-background'
-                    }`}
-                  >
-                    {node.count > 0 ? node.count : ''}
+                <div key={node.title}>
+                  <div className="pointer-events-none absolute bottom-0 border-l border-dashed border-white/10" style={{ left: `${node.x}%`, height: `${node.y}%` }} />
+                  <div
+                    className="pointer-events-none absolute border-t border-dashed border-white/10"
+                    style={{ bottom: `${node.y}%`, left: `${Math.min(50, node.x)}%`, width: `${Math.abs(node.x - 50)}%` }}
+                  />
+                  <span className="absolute -translate-x-1/2 translate-y-1/2" style={{ left: `${node.x}%`, bottom: `${node.y}%` }}>
+                    {node.count > 0 && (
+                      <span className="absolute left-1/2 top-1/2 h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 transition-transform duration-300 group-hover:scale-110" />
+                    )}
+                    <span
+                      className={`relative flex h-5 w-5 items-center justify-center rounded-full border-2 font-mono text-[0.6rem] font-bold transition-transform duration-300 group-hover:scale-110 ${
+                        node.count > 0 ? 'border-accent bg-background text-accent shadow-[0_0_10px_-2px_rgba(255,106,0,0.65)]' : 'border-dashed border-white/30 bg-background text-muted-foreground/60'
+                      }`}
+                    >
+                      {node.count > 0 ? node.count : '+'}
+                    </span>
+                    <span className="absolute left-1/2 top-full mt-2 w-max max-w-[7rem] -translate-x-1/2 text-center text-[0.7rem] font-medium leading-tight text-foreground/80">
+                      {node.title}
+                    </span>
                   </span>
-                  <span className="absolute left-1/2 top-full mt-2 w-max max-w-[7rem] -translate-x-1/2 text-center text-[0.7rem] font-medium leading-tight text-foreground/80">
-                    {node.title}
-                  </span>
-                </span>
+                </div>
               ))}
+              <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/25" />
             </div>
             {/* List (below sm): same nodes, no overlap risk. */}
             <div className="relative flex flex-col gap-2 sm:hidden">

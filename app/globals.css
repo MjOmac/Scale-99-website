@@ -48,6 +48,15 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .eyebrow { color: var(--accent); font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
 .bg-surface { background: var(--surface); }
 .bg-grid { background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 48px 48px; }
+
+/* Denser grid for the industries quadrant plot, faded toward the edges via a
+   radial mask so it reads as a data surface rather than tiling off sharply. */
+.plot-grid {
+  background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 90%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 90%);
+}
 ::selection { background: var(--accent); color: var(--accent-foreground); }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
