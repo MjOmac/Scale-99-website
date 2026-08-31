@@ -13,7 +13,7 @@ export default function IndustriesPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-24 text-center text-foreground lg:pt-28">
+      <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="relative overflow-hidden px-6 pb-20 pt-4 lg:px-10 lg:pb-28">
           <video
             className="absolute inset-0 h-full w-full object-cover object-center opacity-50"

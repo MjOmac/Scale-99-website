@@ -13,7 +13,7 @@ export default function ServicesPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-24 text-center text-foreground lg:pt-28">
+      <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="mx-auto max-w-5xl px-6 pb-28 lg:px-10 lg:pb-40">
           <ServicesAccordion />
         </section>

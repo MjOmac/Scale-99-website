@@ -37,7 +37,7 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-background pt-24 text-center text-foreground lg:pt-28">
+      <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         {/* ── Hero: blueprint grid ─────────────────────────────── */}
         <section className="relative overflow-hidden border-b border-white/10 px-6 pb-20 pt-4 lg:px-10 lg:pb-28">
           <video

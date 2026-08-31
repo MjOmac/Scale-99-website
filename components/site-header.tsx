@@ -50,7 +50,10 @@ export function SiteHeader() {
         className="nav-glow nav-pill relative inline-flex shrink-0 items-center gap-1 rounded-full border border-white/10 bg-background/75 py-2 pl-2.5 pr-1.5 backdrop-blur-xl sm:gap-4 sm:pl-5 sm:pr-2"
       >
         <Link href="/" onClick={close} className="flex shrink-0 items-center">
-          <img src="/scale99-logo.png" alt="Scale99" className="h-4 w-auto sm:h-6" />
+          {/* The logo's ink sits visually lower than the nav text's cap-height
+              even though their boxes share the same center — a font-metrics
+              vs. image quirk, not a layout bug. Nudge it up to compensate. */}
+          <img src="/scale99-logo.png" alt="Scale99" className="h-4 w-auto -translate-y-[1px] sm:h-6 sm:-translate-y-[2px]" />
         </Link>
 
         <NavMenu label="About" items={aboutLinks} menuKey="about" open={open} toggle={toggle} close={close} />
