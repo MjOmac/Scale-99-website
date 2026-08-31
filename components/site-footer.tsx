@@ -28,7 +28,7 @@ export function SiteFooter() {
         </div>
         <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/10 pt-6 text-xs text-muted-foreground">
           <p>© 2026 Scale99. Engineered for momentum.</p>
-          <a href="mailto:hello@scale99.com" className="transition-colors hover:text-foreground">hello@scale99.com</a>
+          <a href="mailto:hello@scale-99.com" className="transition-colors hover:text-foreground">hello@scale-99.com</a>
         </div>
       </div>
     </footer>

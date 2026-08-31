@@ -489,7 +489,7 @@ export default function Page() {
               Tell us what your business is trying to do. We&apos;ll tell you what it would actually take.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a href="mailto:hello@scale99.com" className="flex items-center gap-3 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">
+              <a href="mailto:hello@scale-99.com" className="flex items-center gap-3 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">
                 Set Up a Free Consultation <ArrowRight size={16} />
               </a>
               <Link href="/software" className="flex items-center gap-3 rounded-md border border-white/30 px-5 py-3 text-sm font-semibold transition-colors hover:border-foreground">

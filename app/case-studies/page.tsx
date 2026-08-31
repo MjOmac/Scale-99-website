@@ -96,7 +96,7 @@ export default function CaseStudiesPage() {
                 Ready to build<br />what&apos;s next<span className="text-accent">?</span>
               </h2>
             </div>
-            <a href="mailto:hello@scale99.com" className="flex mx-auto w-fit items-center gap-3 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground">
+            <a href="mailto:hello@scale-99.com" className="flex mx-auto w-fit items-center gap-3 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground">
               Request Demo <ArrowRight size={16} />
             </a>
           </div>

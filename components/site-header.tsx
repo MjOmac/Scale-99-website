@@ -47,10 +47,10 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 text-left">
       <div
         ref={navRef}
-        className="nav-glow nav-pill relative inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-background/75 py-2 pl-4 pr-2 backdrop-blur-xl sm:gap-4 sm:pl-5"
+        className="nav-glow nav-pill relative inline-flex shrink-0 items-center gap-1 rounded-full border border-white/10 bg-background/75 py-2 pl-2.5 pr-1.5 backdrop-blur-xl sm:gap-4 sm:pl-5 sm:pr-2"
       >
         <Link href="/" onClick={close} className="flex shrink-0 items-center">
-          <img src="/scale99-logo.png" alt="Scale99" className="h-5 w-auto sm:h-6" />
+          <img src="/scale99-logo.png" alt="Scale99" className="h-4 w-auto sm:h-6" />
         </Link>
 
         <NavMenu label="About" items={aboutLinks} menuKey="about" open={open} toggle={toggle} close={close} />
@@ -59,7 +59,7 @@ export function SiteHeader() {
         <Link
           href="/blog"
           onClick={close}
-          className="shrink-0 whitespace-nowrap text-[0.8rem] font-medium text-white transition-colors hover:text-accent sm:text-[0.83rem]"
+          className="shrink-0 whitespace-nowrap text-[0.68rem] font-medium text-white transition-colors hover:text-accent sm:text-[0.83rem]"
         >
           Blog
         </Link>
@@ -67,10 +67,11 @@ export function SiteHeader() {
         <Link
           href="/#contact"
           onClick={close}
-          className="flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-accent py-2 pl-3 pr-2.5 text-[0.8rem] font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:gap-2 sm:pl-4 sm:pr-3"
+          className="flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-accent py-1.5 pl-2 pr-1.5 text-[0.68rem] font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:gap-2 sm:py-2 sm:pl-4 sm:pr-3 sm:text-[0.8rem]"
         >
+          <span className="sm:hidden">Talk</span>
           <span className="hidden sm:inline">Talk to us</span>
-          <ArrowRight size={14} />
+          <ArrowRight size={13} />
         </Link>
       </div>
     </header>
@@ -95,11 +96,11 @@ function NavMenu({
       <button
         aria-expanded={isOpen}
         onClick={() => toggle(menuKey)}
-        className="flex items-center gap-1 whitespace-nowrap text-[0.8rem] font-medium text-white transition-colors hover:text-accent sm:gap-1.5 sm:text-[0.83rem]"
+        className="flex items-center gap-0.5 whitespace-nowrap text-[0.68rem] font-medium text-white transition-colors hover:text-accent sm:gap-1.5 sm:text-[0.83rem]"
       >
         <span className="sm:hidden">{shortLabel ?? label}</span>
         <span className="hidden sm:inline">{label}</span>
-        <ChevronDown size={13} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown size={12} className={`shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       <div
