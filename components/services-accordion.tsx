@@ -2,6 +2,7 @@
 
 import { Check } from 'lucide-react'
 import { useState } from 'react'
+import { ServiceVideoStack } from '@/components/service-video-stack'
 import { services } from '@/lib/services-data'
 
 export function ServicesAccordion() {
@@ -45,9 +46,7 @@ export function ServicesAccordion() {
 
           {/* Top half: illustration video as a background behind the service intro */}
           <div className="relative min-h-[280px] overflow-hidden border-b border-white/10 bg-background">
-            <video key={service.heroVideo} className="absolute inset-0 h-full w-full object-cover object-center opacity-75" autoPlay muted loop playsInline aria-hidden="true">
-              <source src={service.heroVideo} type="video/mp4" />
-            </video>
+            <ServiceVideoStack services={services} activeIndex={active} />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/10" />
 
             <div className="relative p-8 sm:p-10">

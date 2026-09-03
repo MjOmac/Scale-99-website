@@ -9,6 +9,8 @@ export interface Service {
   process: { step: string; detail: string }[]
   deliverables: string[]
   heroVideo: string
+  /** First-frame still, shown instantly while the video buffers. */
+  heroPoster: string
 }
 
 export const services: Service[] = [
@@ -24,6 +26,7 @@ export const services: Service[] = [
     ],
     deliverables: ['End-to-end workflow map', 'Live automation, deployed and monitored', 'Handoff documentation for your team'],
     heroVideo: '/services/automation-tools.mp4',
+    heroPoster: '/services/automation-tools-poster.jpg',
   },
   {
     number: '02',
@@ -37,6 +40,7 @@ export const services: Service[] = [
     ],
     deliverables: ['Configured or custom-built CRM', 'Reporting dashboards for leadership', 'Team onboarding & documentation'],
     heroVideo: '/services/crm-solutions.mp4',
+    heroPoster: '/services/crm-solutions-poster.jpg',
   },
   {
     number: '03',
@@ -50,6 +54,7 @@ export const services: Service[] = [
     ],
     deliverables: ['Clean, documented database schema', 'Migrated & validated production data', 'Automated backup & security setup'],
     heroVideo: '/services/database-management.mp4',
+    heroPoster: '/services/database-management-poster.jpg',
   },
   {
     number: '04',
@@ -63,6 +68,7 @@ export const services: Service[] = [
     ],
     deliverables: ['Fully built & deployed software', 'Source code & technical documentation', 'Post-launch support window'],
     heroVideo: '/services/custom-software.mp4',
+    heroPoster: '/services/custom-software-poster.jpg',
   },
   {
     number: '05',
@@ -76,6 +82,7 @@ export const services: Service[] = [
     ],
     deliverables: ['User flows & wireframes', 'High-fidelity UI screens', 'Reusable design system'],
     heroVideo: '/services/ui-ux-design.mp4',
+    heroPoster: '/services/ui-ux-design-poster.jpg',
   },
   {
     number: '06',
@@ -89,5 +96,6 @@ export const services: Service[] = [
     ],
     deliverables: ['Live, production-ready website', 'Technical SEO audit & fixes', 'Analytics & search console setup'],
     heroVideo: '/services/websites-seo.mp4',
+    heroPoster: '/services/websites-seo-poster.jpg',
   },
 ]

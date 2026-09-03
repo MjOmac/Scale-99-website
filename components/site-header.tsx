@@ -47,23 +47,30 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 text-left">
       <div
         ref={navRef}
-        className="nav-glow nav-pill relative inline-flex shrink-0 items-center gap-1 rounded-full border border-white/10 bg-background/75 py-2 pl-2.5 pr-1.5 backdrop-blur-xl sm:gap-4 sm:pl-5 sm:pr-2"
+        className="nav-glow nav-pill relative inline-flex shrink-0 items-center gap-1 rounded-full border border-white/10 bg-background/75 py-2 pl-2.5 pr-1.5 backdrop-blur-xl md:gap-9 md:pl-9 md:pr-3"
       >
         <Link href="/" onClick={close} className="flex shrink-0 items-center">
           {/* The logo's ink sits visually lower than the nav text's cap-height
               even though their boxes share the same center — a font-metrics
               vs. image quirk, not a layout bug. Nudge it up to compensate. */}
           {/* eslint-disable-next-line @next/next/no-img-element -- next/image adds no benefit here since images.unoptimized is set */}
-          <img src="/scale99-logo.png" alt="Scale99" className="h-4 w-auto -translate-y-[1px] sm:h-6 sm:-translate-y-[2px]" />
+          <img src="/scale99-logo.png" alt="Scale99" className="h-4 w-auto -translate-y-[1px] md:h-6 md:-translate-y-[2px]" />
         </Link>
 
+        <NavDivider />
+
         <NavMenu label="About" items={aboutLinks} menuKey="about" open={open} toggle={toggle} close={close} />
+
+        <NavDivider />
+
         <NavMenu label="What we do" shortLabel="Work" items={whatWeDoLinks} menuKey="work" open={open} toggle={toggle} close={close} />
+
+        <NavDivider />
 
         <Link
           href="/blog"
           onClick={close}
-          className="shrink-0 whitespace-nowrap text-[0.68rem] font-medium text-white transition-colors hover:text-accent sm:text-[0.83rem]"
+          className="shrink-0 whitespace-nowrap text-[0.68rem] font-medium text-white transition-colors hover:text-accent md:text-[0.83rem]"
         >
           Blog
         </Link>
@@ -71,15 +78,19 @@ export function SiteHeader() {
         <Link
           href="/#contact"
           onClick={close}
-          className="flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-accent py-1.5 pl-2 pr-1.5 text-[0.68rem] font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:gap-2 sm:py-2 sm:pl-4 sm:pr-3 sm:text-[0.8rem]"
+          className="flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-accent py-1.5 pl-2 pr-1.5 text-[0.68rem] font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5 md:gap-2 md:py-2 md:pl-4 md:pr-3 md:text-[0.8rem]"
         >
-          <span className="sm:hidden">Talk</span>
-          <span className="hidden sm:inline">Talk to us</span>
+          <span className="md:hidden">Talk</span>
+          <span className="hidden md:inline">Talk to us</span>
           <ArrowRight size={13} />
         </Link>
       </div>
     </header>
   )
+}
+
+function NavDivider() {
+  return <span aria-hidden="true" className="hidden h-4 w-px shrink-0 bg-white/15 md:block" />
 }
 
 function NavMenu({
@@ -100,10 +111,10 @@ function NavMenu({
       <button
         aria-expanded={isOpen}
         onClick={() => toggle(menuKey)}
-        className="flex items-center gap-0.5 whitespace-nowrap text-[0.68rem] font-medium text-white transition-colors hover:text-accent sm:gap-1.5 sm:text-[0.83rem]"
+        className="flex items-center gap-0.5 whitespace-nowrap text-[0.68rem] font-medium text-white transition-colors hover:text-accent md:gap-1.5 md:text-[0.83rem]"
       >
-        <span className="sm:hidden">{shortLabel ?? label}</span>
-        <span className="hidden sm:inline">{label}</span>
+        <span className="md:hidden">{shortLabel ?? label}</span>
+        <span className="hidden md:inline">{label}</span>
         <ChevronDown size={12} className={`shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 

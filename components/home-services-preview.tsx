@@ -3,6 +3,7 @@
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { ServiceVideoStack } from '@/components/service-video-stack'
 import { services } from '@/lib/services-data'
 
 /**
@@ -44,10 +45,7 @@ export function HomeServicesPreview() {
           <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
         </div>
         <div className="relative min-h-[240px] overflow-hidden">
-          {/* Keyed so React swaps the element on tab change and the new source autoplays. */}
-          <video key={service.heroVideo} className="absolute inset-0 h-full w-full object-cover object-center opacity-75" autoPlay muted loop playsInline aria-hidden="true">
-            <source src={service.heroVideo} type="video/mp4" />
-          </video>
+          <ServiceVideoStack services={services} activeIndex={active} />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/10" />
           <div className="relative p-8 sm:p-10">
             <span className="font-mono text-xs text-accent">{service.number}</span>
