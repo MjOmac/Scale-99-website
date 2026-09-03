@@ -71,7 +71,7 @@ export function SiteHeader() {
           <Link
             href="/blog"
             onClick={close}
-            className="-mx-2.5 -my-1 whitespace-nowrap rounded-full px-2.5 py-1 font-heading text-[0.68rem] font-semibold text-white transition-colors hover:bg-white/10 hover:text-accent lg:-mx-3 lg:-my-1.5 lg:px-3 lg:py-1.5 lg:text-[0.83rem]"
+            className="-mx-2.5 -my-1 flex items-center whitespace-nowrap rounded-full px-2.5 py-1 font-heading text-[0.68rem] font-semibold text-white transition-colors hover:bg-white/10 hover:text-accent lg:-mx-3 lg:-my-1.5 lg:px-3 lg:py-1.5 lg:text-[0.83rem]"
           >
             Blog
           </Link>
