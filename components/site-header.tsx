@@ -53,6 +53,7 @@ export function SiteHeader() {
           {/* The logo's ink sits visually lower than the nav text's cap-height
               even though their boxes share the same center — a font-metrics
               vs. image quirk, not a layout bug. Nudge it up to compensate. */}
+          {/* eslint-disable-next-line @next/next/no-img-element -- next/image adds no benefit here since images.unoptimized is set */}
           <img src="/scale99-logo.png" alt="Scale99" className="h-4 w-auto -translate-y-[1px] sm:h-6 sm:-translate-y-[2px]" />
         </Link>
 

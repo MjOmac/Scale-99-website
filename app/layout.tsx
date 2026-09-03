@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { JsonLd } from '@/components/json-ld'
 import { organizationJsonLd, websiteJsonLd } from '@/lib/seo'
@@ -61,6 +62,7 @@ export default function RootLayout({
         <JsonLd data={organizationJsonLd({ logoUrl: `${SITE_URL}/scale99-logo.png` })} />
         <JsonLd data={websiteJsonLd()} />
         {children}
+        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )

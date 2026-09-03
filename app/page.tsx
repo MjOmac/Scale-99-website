@@ -2,6 +2,7 @@ import { AlertTriangle, ArrowRight, ArrowUpRight, ChevronDown, Lightbulb, Trendi
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ContactForm } from '@/components/contact-form'
 import { FlipStatCard } from '@/components/flip-stat-card'
 import { HomeServicesPreview } from '@/components/home-services-preview'
 import { JsonLd } from '@/components/json-ld'
@@ -511,14 +512,12 @@ export default function Page() {
             <p className="mx-auto mt-6 max-w-xl leading-7 text-muted-foreground">
               Tell us what your business is trying to do. We&apos;ll tell you what it would actually take.
             </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a href="mailto:hello@scale-99.com" className="flex items-center gap-3 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">
-                Set Up a Free Consultation <ArrowRight size={16} />
-              </a>
-              <Link href="/software" className="flex items-center gap-3 rounded-md border border-white/30 px-5 py-3 text-sm font-semibold transition-colors hover:border-foreground">
-                Explore our software <ArrowRight size={16} />
-              </Link>
+            <div className="mt-10 w-full max-w-lg">
+              <ContactForm />
             </div>
+            <Link href="/software" className="mt-8 flex items-center gap-3 rounded-md border border-white/30 px-5 py-3 text-sm font-semibold transition-colors hover:border-foreground">
+              Explore our software <ArrowRight size={16} />
+            </Link>
           </div>
         </section>
 

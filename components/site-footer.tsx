@@ -7,6 +7,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-5xl text-center">
         <div className="flex flex-col items-center gap-8">
           <Link href="/" className="flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element -- next/image adds no benefit here since images.unoptimized is set */}
             <img src="/scale99-logo.png" alt="Scale99" className="h-6 w-auto" />
           </Link>
           <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
@@ -22,13 +23,19 @@ export function SiteFooter() {
             <Link href="/#contact" className="transition-colors hover:text-foreground">Contact</Link>
           </nav>
           <div className="flex justify-center gap-4 text-muted-foreground">
-            <a href="/#contact" aria-label="LinkedIn" className="transition-colors hover:text-foreground"><Globe size={16} /></a>
-            <a href="/#contact" aria-label="Twitter" className="transition-colors hover:text-foreground"><MessageCircle size={16} /></a>
+            {/* TODO: point at real social profiles once available, or remove */}
+            <Link href="/#contact" aria-label="LinkedIn" className="transition-colors hover:text-foreground"><Globe size={16} /></Link>
+            <Link href="/#contact" aria-label="Twitter" className="transition-colors hover:text-foreground"><MessageCircle size={16} /></Link>
           </div>
         </div>
         <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/10 pt-6 text-xs text-muted-foreground">
           <p>© 2026 Scale99. Engineered for momentum.</p>
           <a href="mailto:hello@scale-99.com" className="transition-colors hover:text-foreground">hello@scale-99.com</a>
+          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+            <Link href="/privacy-policy" className="transition-colors hover:text-foreground">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="transition-colors hover:text-foreground">Terms of Service</Link>
+            <Link href="/cookie-policy" className="transition-colors hover:text-foreground">Cookie Policy</Link>
+          </nav>
         </div>
       </div>
     </footer>
