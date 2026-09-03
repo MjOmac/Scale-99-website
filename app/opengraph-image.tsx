@@ -1,10 +1,15 @@
+import fs from 'node:fs/promises'
+import path from 'node:path'
 import { ImageResponse } from 'next/og'
 
 export const alt = 'Scale99 — Built to scale.'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-export default function OpengraphImage() {
+export default async function OpengraphImage() {
+  const logoBuffer = await fs.readFile(path.join(process.cwd(), 'public/scale99-logo.png'))
+  const logoSrc = `data:image/png;base64,${logoBuffer.toString('base64')}`
+
   return new ImageResponse(
     (
       <div
@@ -23,22 +28,12 @@ export default function OpengraphImage() {
           backgroundSize: '100% 100%, 48px 48px, 48px 48px',
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element -- next/og ImageResponse renders its own <img>, next/image is not usable here */}
+        <img src={logoSrc} width={640} height={141} alt="Scale99" />
         <div
           style={{
             display: 'flex',
-            fontSize: 96,
-            fontWeight: 700,
-            color: '#FFFFFF',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          Scale
-          <span style={{ color: '#FF6A00' }}>99</span>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            marginTop: 20,
+            marginTop: 28,
             fontSize: 32,
             color: '#9A9A9A',
             letterSpacing: '0.01em',
