@@ -67,13 +67,15 @@ export function SiteHeader() {
 
         <NavDivider />
 
-        <Link
-          href="/blog"
-          onClick={close}
-          className="-mx-2.5 -my-1 shrink-0 whitespace-nowrap rounded-full px-2.5 py-1 text-[0.68rem] font-medium text-white transition-colors hover:bg-white/10 hover:text-accent md:-mx-3 md:-my-1.5 md:px-3 md:py-1.5 md:text-[0.83rem]"
-        >
-          Blog
-        </Link>
+        <div className="shrink-0">
+          <Link
+            href="/blog"
+            onClick={close}
+            className="-mx-2.5 -my-1 whitespace-nowrap rounded-full px-2.5 py-1 text-[0.68rem] font-medium text-white transition-colors hover:bg-white/10 hover:text-accent md:-mx-3 md:-my-1.5 md:px-3 md:py-1.5 md:text-[0.83rem]"
+          >
+            Blog
+          </Link>
+        </div>
 
         <Link
           href="/#contact"
