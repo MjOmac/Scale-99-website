@@ -47,7 +47,7 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 text-left">
       <div
         ref={navRef}
-        className="nav-glow nav-pill relative inline-flex shrink-0 items-center gap-1 rounded-full border border-white/10 bg-background/75 py-2 pl-2.5 pr-1.5 backdrop-blur-xl md:gap-9 md:pl-9 md:pr-3"
+        className="nav-glow nav-pill relative flex w-full shrink-0 items-center justify-between gap-1 rounded-full border border-white/10 bg-background/75 py-2 pl-2.5 pr-1.5 backdrop-blur-xl md:inline-flex md:w-auto md:justify-start md:gap-9 md:pl-9 md:pr-3"
       >
         <Link href="/" onClick={close} className="flex shrink-0 items-center">
           {/* The logo's ink sits visually lower than the nav text's cap-height
@@ -70,7 +70,7 @@ export function SiteHeader() {
         <Link
           href="/blog"
           onClick={close}
-          className="shrink-0 whitespace-nowrap text-[0.68rem] font-medium text-white transition-colors hover:text-accent md:text-[0.83rem]"
+          className="-mx-2.5 -my-1 shrink-0 whitespace-nowrap rounded-full px-2.5 py-1 text-[0.68rem] font-medium text-white transition-colors hover:bg-white/10 hover:text-accent md:-mx-3 md:-my-1.5 md:px-3 md:py-1.5 md:text-[0.83rem]"
         >
           Blog
         </Link>
@@ -111,7 +111,9 @@ function NavMenu({
       <button
         aria-expanded={isOpen}
         onClick={() => toggle(menuKey)}
-        className="flex items-center gap-0.5 whitespace-nowrap text-[0.68rem] font-medium text-white transition-colors hover:text-accent md:gap-1.5 md:text-[0.83rem]"
+        className={`-mx-2.5 -my-1 flex items-center gap-0.5 whitespace-nowrap rounded-full px-2.5 py-1 text-[0.68rem] font-medium text-white transition-colors hover:bg-white/10 hover:text-accent md:-mx-3 md:-my-1.5 md:gap-1.5 md:px-3 md:py-1.5 md:text-[0.83rem] ${
+          isOpen ? 'bg-white/10 text-accent' : ''
+        }`}
       >
         <span className="md:hidden">{shortLabel ?? label}</span>
         <span className="hidden md:inline">{label}</span>
