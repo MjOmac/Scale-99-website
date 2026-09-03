@@ -47,14 +47,14 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 text-left">
       <div
         ref={navRef}
-        className="nav-glow nav-pill relative flex w-full shrink-0 items-center justify-between gap-1 rounded-full border border-white/10 bg-background/75 py-2 pl-2.5 pr-1.5 backdrop-blur-xl md:inline-flex md:w-auto md:justify-start md:gap-9 md:pl-9 md:pr-3"
+        className="nav-glow nav-pill relative flex w-full shrink-0 items-center justify-between gap-1 rounded-full border border-white/10 bg-background/75 py-2 pl-2.5 pr-1.5 backdrop-blur-xl lg:inline-flex lg:w-auto lg:justify-start lg:gap-14 lg:pl-14 lg:pr-6"
       >
         <Link href="/" onClick={close} className="flex shrink-0 items-center">
           {/* The logo's ink sits visually lower than the nav text's cap-height
               even though their boxes share the same center — a font-metrics
               vs. image quirk, not a layout bug. Nudge it up to compensate. */}
           {/* eslint-disable-next-line @next/next/no-img-element -- next/image adds no benefit here since images.unoptimized is set */}
-          <img src="/scale99-logo.png" alt="Scale99" className="h-4 w-auto -translate-y-[1px] md:h-6 md:-translate-y-[2px]" />
+          <img src="/scale99-logo.png" alt="Scale99" className="h-4 w-auto -translate-y-[1px] lg:h-6 lg:-translate-y-[2px]" />
         </Link>
 
         <NavDivider />
@@ -71,7 +71,7 @@ export function SiteHeader() {
           <Link
             href="/blog"
             onClick={close}
-            className="-mx-2.5 -my-1 whitespace-nowrap rounded-full px-2.5 py-1 text-[0.68rem] font-medium text-white transition-colors hover:bg-white/10 hover:text-accent md:-mx-3 md:-my-1.5 md:px-3 md:py-1.5 md:text-[0.83rem]"
+            className="-mx-2.5 -my-1 whitespace-nowrap rounded-full px-2.5 py-1 text-[0.68rem] font-medium text-white transition-colors hover:bg-white/10 hover:text-accent lg:-mx-3 lg:-my-1.5 lg:px-3 lg:py-1.5 lg:text-[0.83rem]"
           >
             Blog
           </Link>
@@ -80,10 +80,10 @@ export function SiteHeader() {
         <Link
           href="/#contact"
           onClick={close}
-          className="flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-accent py-1.5 pl-2 pr-1.5 text-[0.68rem] font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5 md:gap-2 md:py-2 md:pl-4 md:pr-3 md:text-[0.8rem]"
+          className="flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-accent py-1.5 pl-2 pr-1.5 text-[0.68rem] font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5 lg:gap-2 lg:py-2 lg:pl-4 lg:pr-3 lg:text-[0.8rem]"
         >
-          <span className="md:hidden">Talk</span>
-          <span className="hidden md:inline">Talk to us</span>
+          <span className="lg:hidden">Talk</span>
+          <span className="hidden lg:inline">Talk to us</span>
           <ArrowRight size={13} />
         </Link>
       </div>
@@ -92,7 +92,7 @@ export function SiteHeader() {
 }
 
 function NavDivider() {
-  return <span aria-hidden="true" className="hidden h-4 w-px shrink-0 bg-white/15 md:block" />
+  return <span aria-hidden="true" className="hidden h-4 w-px shrink-0 bg-white/15 lg:block" />
 }
 
 function NavMenu({
@@ -113,12 +113,12 @@ function NavMenu({
       <button
         aria-expanded={isOpen}
         onClick={() => toggle(menuKey)}
-        className={`-mx-2.5 -my-1 flex items-center gap-0.5 whitespace-nowrap rounded-full px-2.5 py-1 text-[0.68rem] font-medium text-white transition-colors hover:bg-white/10 hover:text-accent md:-mx-3 md:-my-1.5 md:gap-1.5 md:px-3 md:py-1.5 md:text-[0.83rem] ${
+        className={`-mx-2.5 -my-1 flex items-center gap-0.5 whitespace-nowrap rounded-full px-2.5 py-1 text-[0.68rem] font-medium text-white transition-colors hover:bg-white/10 hover:text-accent lg:-mx-3 lg:-my-1.5 lg:gap-1.5 lg:px-3 lg:py-1.5 lg:text-[0.83rem] ${
           isOpen ? 'bg-white/10 text-accent' : ''
         }`}
       >
-        <span className="md:hidden">{shortLabel ?? label}</span>
-        <span className="hidden md:inline">{label}</span>
+        <span className="lg:hidden">{shortLabel ?? label}</span>
+        <span className="hidden lg:inline">{label}</span>
         <ChevronDown size={12} className={`shrink-0 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
