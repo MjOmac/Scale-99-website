@@ -2,19 +2,23 @@ import { ArrowRight, Check, ImageIcon } from 'lucide-react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { products } from '@/lib/products-data'
+import { breadcrumbJsonLd, pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Software — Scale99',
   description: 'Production-proven platforms from Scale99 across hospitality, construction, healthcare, marketing, and medtech—each built for a real client operation.',
-}
+  path: '/software',
+})
 
 export default function SoftwarePage() {
   return (
     <>
       <SiteHeader />
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Software', path: '/software' }])} />
       <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="relative overflow-hidden px-6 pb-20 pt-4 lg:px-10 lg:pb-28">
           <video

@@ -1,11 +1,22 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { JsonLd } from '@/components/json-ld'
+import { organizationJsonLd, websiteJsonLd } from '@/lib/seo'
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '@/lib/site'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Scale99 — Built to scale.',
-  description: 'Scale99 engineers the systems, experiences, and momentum that move ambitious businesses forward.',
-  generator: 'Scale99',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: '%s',
+  },
+  description: SITE_DESCRIPTION,
+  generator: 'Scale-99',
+  applicationName: 'Scale99',
+  authors: [{ name: 'Scale-99', url: SITE_URL }],
+  creator: 'Scale-99',
+  publisher: 'Scale-99',
+  manifest: '/manifest.webmanifest',
   icons: {
     icon: [
       {
@@ -13,15 +24,20 @@ export const metadata: Metadata = {
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/icon-dark-32x32.jpeg',
         media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
       },
     ],
     apple: '/apple-icon.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+    },
   },
 }
 
@@ -30,6 +46,8 @@ export const viewport: Viewport = {
   themeColor: '#0A0A0A',
 }
 
+// Scale-99 — https://scale-99.com
+// Designed and developed in-house by Scale-99.
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,8 +56,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
+        <JsonLd data={organizationJsonLd({ logoUrl: `${SITE_URL}/scale99-logo.png` })} />
+        <JsonLd data={websiteJsonLd()} />
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )

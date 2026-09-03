@@ -1,18 +1,22 @@
 import { ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
 import { IndustriesMap } from '@/components/industries-map'
+import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { breadcrumbJsonLd, pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Industries — Scale99',
   description: 'Scale99 works across medical & pharmaceutical, construction & furnishing, education, event & venue management, and marketing agencies.',
-}
+  path: '/industries',
+})
 
 export default function IndustriesPage() {
   return (
     <>
       <SiteHeader />
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Industries', path: '/industries' }])} />
       <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="relative overflow-hidden px-6 pb-20 pt-4 lg:px-10 lg:pb-28">
           <video

@@ -1,12 +1,15 @@
 import { ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { breadcrumbJsonLd, pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Blog — Scale99',
   description: 'Perspectives, field notes, and briefings from the Scale99 team.',
-}
+  path: '/blog',
+})
 
 const posts = [
   { type: 'Perspective', title: 'The operating model is the product.', date: '06.12.26' },
@@ -21,6 +24,7 @@ export default function BlogPage() {
   return (
     <>
       <SiteHeader />
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blog' }])} />
       <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">From the field</p>

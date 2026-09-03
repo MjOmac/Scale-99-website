@@ -2,9 +2,11 @@ import { AlertTriangle, ArrowLeft, ArrowRight, ChevronDown, Lightbulb, TrendingU
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { getProductBySlug, products } from '@/lib/products-data'
+import { breadcrumbJsonLd, pageMetadata, productJsonLd } from '@/lib/seo'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -20,10 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!product) return {}
 
-  return {
+  return pageMetadata({
     title: product.metaTitle,
     description: product.metaDescription,
-  }
+    path: `/software/${product.slug}`,
+    image: product.heroImage,
+  })
 }
 
 // Highlights arrive as "Label: supporting detail" — split on the first colon so the
@@ -51,6 +55,22 @@ export default async function ProductPage({ params }: Props) {
   return (
     <>
       <SiteHeader />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Software', path: '/software' },
+          { name: product.title, path: `/software/${product.slug}` },
+        ])}
+      />
+      <JsonLd
+        data={productJsonLd({
+          name: product.title,
+          description: product.shortExplanation,
+          category: product.category,
+          path: `/software/${product.slug}`,
+          image: product.heroImage,
+        })}
+      />
       <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="relative overflow-hidden px-6 pb-20 pt-4 lg:px-10 lg:pb-28">
           {product.heroVideo

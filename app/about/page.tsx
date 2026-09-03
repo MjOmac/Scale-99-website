@@ -1,13 +1,16 @@
 import { ArrowRight, Boxes, Globe, Handshake, Users } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { breadcrumbJsonLd, pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Who We Are — Scale99',
   description: 'Scale 99 started with a simple frustration: too many businesses were bending themselves around software that was never built for them. So we started building it the other way.',
-}
+  path: '/about',
+})
 
 const stats = [
   { icon: Users, value: '25+', label: 'Clients served' },
@@ -37,6 +40,7 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Who We Are', path: '/about' }])} />
       <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         {/* ── Hero: blueprint grid ─────────────────────────────── */}
         <section className="relative overflow-hidden border-b border-white/10 px-6 pb-20 pt-4 lg:px-10 lg:pb-28">

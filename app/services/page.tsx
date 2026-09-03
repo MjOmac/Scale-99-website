@@ -1,18 +1,40 @@
 import { ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/json-ld'
 import { ServicesAccordion } from '@/components/services-accordion'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { services } from '@/lib/services-data'
+import { breadcrumbJsonLd, pageMetadata } from '@/lib/seo'
+import { SITE_NAME } from '@/lib/site'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Services — Scale99',
   description: 'Six services, one team, start to finish: automation, CRM, database management, custom software, UI/UX design, and websites & SEO.',
+  path: '/services',
+})
+
+const servicesJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: services.map((service, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'Service',
+      name: service.title,
+      description: service.text,
+      provider: { '@type': 'Organization', name: SITE_NAME },
+    },
+  })),
 }
 
 export default function ServicesPage() {
   return (
     <>
       <SiteHeader />
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }])} />
+      <JsonLd data={servicesJsonLd} />
       <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="mx-auto max-w-5xl px-6 pb-28 lg:px-10 lg:pb-40">
           <ServicesAccordion />

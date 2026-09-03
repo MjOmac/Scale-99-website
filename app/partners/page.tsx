@@ -1,12 +1,15 @@
 import { ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { breadcrumbJsonLd, pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Partners — Scale99',
   description: 'The technology and platform partners Scale99 works alongside to deliver systems that scale.',
-}
+  path: '/partners',
+})
 
 const partners = [
   { name: 'Brightline Cloud', category: 'Infrastructure & hosting' },
@@ -19,6 +22,7 @@ export default function PartnersPage() {
   return (
     <>
       <SiteHeader />
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Partners', path: '/partners' }])} />
       <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">Partners</p>

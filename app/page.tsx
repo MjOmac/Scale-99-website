@@ -1,11 +1,21 @@
 import { AlertTriangle, ArrowRight, ArrowUpRight, ChevronDown, Lightbulb, TrendingUp, Users } from 'lucide-react'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FlipStatCard } from '@/components/flip-stat-card'
 import { HomeServicesPreview } from '@/components/home-services-preview'
+import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { products } from '@/lib/products-data'
+import { faqJsonLd, pageMetadata } from '@/lib/seo'
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/lib/site'
+
+export const metadata: Metadata = pageMetadata({
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  path: '/',
+})
 
 const stats = [
   { headline: 'Fast', label: 'Delivery & shipping', detail: 'From kickoff to launch in weeks, not quarters—no drawn-out timelines.', accent: false },
@@ -65,6 +75,7 @@ export default function Page() {
   return (
     <>
       <SiteHeader />
+      <JsonLd data={faqJsonLd(faqs)} />
       <main className="min-h-screen bg-background text-center text-foreground">
         {/* ── Hero ─────────────────────────────────────────────── */}
         <section id="top" className="relative flex min-h-[480px] items-end overflow-hidden border-b border-white/10 px-6 pb-20 pt-24 lg:min-h-[560px] lg:px-10 lg:pb-24">

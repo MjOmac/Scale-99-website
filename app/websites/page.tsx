@@ -1,13 +1,16 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { breadcrumbJsonLd, pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Websites — Scale99',
   description: 'A look at the websites Scale99 has designed and built for clients across manufacturing, construction, and marketing.',
-}
+  path: '/websites',
+})
 
 const projects = [
   { client: 'Lanyardy', category: 'Manufacturing & Print', title: 'Factory-direct lanyards, badges & wristbands', url: 'https://www.lanyardy.net/', image: '/websites/lanyardy.jpeg' },
@@ -20,6 +23,7 @@ export default function WebsitesPage() {
   return (
     <>
       <SiteHeader />
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Websites', path: '/websites' }])} />
       <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">Websites</p>

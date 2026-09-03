@@ -1,12 +1,15 @@
 import { ArrowRight } from 'lucide-react'
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/json-ld'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { breadcrumbJsonLd, pageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Customer Testimonials — Scale99',
   description: 'What Scale99 clients say about working with the team.',
-}
+  path: '/testimonials',
+})
 
 const testimonials = [
   { quote: 'Scale99 gave us the confidence to make the decisions we had been putting off.', name: 'Maya Chen', role: 'Chief Operating Officer, Meridian' },
@@ -19,6 +22,7 @@ export default function TestimonialsPage() {
   return (
     <>
       <SiteHeader />
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Testimonials', path: '/testimonials' }])} />
       <main className="min-h-screen bg-background pt-16 text-center text-foreground lg:pt-20">
         <section className="mx-auto max-w-5xl px-6 pb-20 lg:px-10 lg:pb-28">
           <p className="eyebrow">Customer Testimonials</p>

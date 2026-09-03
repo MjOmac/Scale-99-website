@@ -4,7 +4,9 @@ import { ArrowRight, ImageIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { JsonLd } from '@/components/json-ld'
 import { getProductBySlug } from '@/lib/products-data'
+import { SITE_NAME, SITE_URL } from '@/lib/site'
 
 interface Industry {
   id: string
@@ -30,6 +32,23 @@ export function IndustriesMap() {
 
   return (
     <div className="mt-16 text-left">
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          itemListElement: industries.map((ind, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            item: {
+              '@type': 'Thing',
+              name: ind.title,
+              description: ind.text,
+              url: `${SITE_URL}/industries`,
+            },
+          })),
+          name: `Industries served by ${SITE_NAME}`,
+        }}
+      />
       {/* ── The map (sm+): a scatter plot needs room labels won't collide in below ~640px. */}
       <div className="relative hidden overflow-hidden rounded-xl border border-white/10 bg-surface p-6 sm:block sm:p-10">
         {/* Soft accent glow behind the origin, plus a masked grid so the plot reads as a data surface, not a void. */}
