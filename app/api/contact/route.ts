@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { SITE_EMAIL } from '@/lib/site'
 
 export const runtime = 'nodejs'
 
@@ -40,13 +41,13 @@ export async function POST(request: Request) {
   }
 
   const apiKey = process.env.RESEND_API_KEY
-  const toEmail = process.env.CONTACT_TO_EMAIL || 'hello@scale-99.com'
+  const toEmail = process.env.CONTACT_TO_EMAIL || SITE_EMAIL
   const fromEmail = process.env.CONTACT_FROM_EMAIL || 'Scale99 Website <onboarding@resend.dev>'
 
   if (!apiKey) {
     console.error('Contact form submission received but RESEND_API_KEY is not configured.')
     return NextResponse.json(
-      { error: 'The contact form is not fully set up yet. Please email hello@scale-99.com directly.' },
+      { error: `The contact form is not fully set up yet. Please email ${SITE_EMAIL} directly.` },
       { status: 503 },
     )
   }
@@ -77,7 +78,7 @@ export async function POST(request: Request) {
   if (!res.ok) {
     const detail = await res.text()
     console.error('Resend API error:', res.status, detail)
-    return NextResponse.json({ error: 'Something went wrong sending your message. Please try emailing hello@scale-99.com directly.' }, { status: 502 })
+    return NextResponse.json({ error: `Something went wrong sending your message. Please try emailing ${SITE_EMAIL} directly.` }, { status: 502 })
   }
 
   return NextResponse.json({ ok: true })

@@ -1,5 +1,6 @@
 import { Globe, MessageCircle } from 'lucide-react'
 import Link from 'next/link'
+import { SITE_EMAIL } from '@/lib/site'
 
 export function SiteFooter() {
   return (
@@ -30,7 +31,7 @@ export function SiteFooter() {
         </div>
         <div className="mt-10 flex flex-col items-center gap-4 border-t border-white/10 pt-6 text-xs text-muted-foreground">
           <p>© 2026 Scale99. Engineered for momentum.</p>
-          <a href="mailto:hello@scale-99.com" className="transition-colors hover:text-foreground">hello@scale-99.com</a>
+          <a href={`mailto:${SITE_EMAIL}`} className="transition-colors hover:text-foreground">{SITE_EMAIL}</a>
           <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             <Link href="/privacy-policy" className="transition-colors hover:text-foreground">Privacy Policy</Link>
             <Link href="/terms-of-service" className="transition-colors hover:text-foreground">Terms of Service</Link>

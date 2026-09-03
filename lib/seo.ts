@@ -3,7 +3,7 @@
 // Twitter card wiring from just a title, description, and path.
 
 import type { Metadata } from 'next'
-import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from './site'
+import { DEFAULT_OG_IMAGE, SITE_EMAIL, SITE_NAME, SITE_URL } from './site'
 
 interface PageMetadataInput {
   title: string
@@ -52,7 +52,7 @@ export function organizationJsonLd({ logoUrl }: OrganizationJsonLdInput) {
     url: SITE_URL,
     logo: logoUrl,
     description: 'Scale99 engineers the systems, experiences, and momentum that move ambitious businesses forward.',
-    email: 'hello@scale-99.com',
+    email: SITE_EMAIL,
   }
 }
 
