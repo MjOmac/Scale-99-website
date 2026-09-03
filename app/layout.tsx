@@ -22,10 +22,12 @@ export const metadata: Metadata = {
       {
         url: '/icon-light-32x32.png',
         media: '(prefers-color-scheme: light)',
+        sizes: '256x256',
       },
       {
-        url: '/icon-dark-32x32.jpeg',
+        url: '/icon-dark-32x32.png',
         media: '(prefers-color-scheme: dark)',
+        sizes: '256x256',
       },
     ],
     apple: '/apple-icon.png',
