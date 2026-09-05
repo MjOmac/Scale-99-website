@@ -13,6 +13,11 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
+  /* Resolved at the use site rather than at :root, so `bg-tone-card` picks up
+     whichever tier the enclosing section set. See the tone ramp below. */
+  --color-tone-bg: var(--tone-bg);
+  --color-tone-card: var(--tone-card);
+  --color-tone-line: var(--tone-line);
   --font-sans: 'Inter', sans-serif;
   --font-heading: 'Sora', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
@@ -27,6 +32,12 @@
   --accent: #FF6A00;
   --accent-foreground: #0A0A0A;
   --border: rgba(255,255,255,.12);
+  /* Defaults match .tone-deep so the tone utilities resolve outside a tiered
+     section too (footer, pages that haven't opted in). */
+  --tone-bg: #0A0A0A;
+  --tone-card: #17171B;
+  --tone-line: rgba(255,255,255,.10);
+  --tone-seam: transparent;
   --cursor-arrow: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNNiAzTDYgMjYuNUwxMiAyMUwxNi41IDI5LjVMMjAuNSAyNy41TDE2IDE5TDI0IDE5WiIgZmlsbD0iI0ZGNkEwMCIgc3Ryb2tlPSIjMEEwQTBBIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+");
 }
 
@@ -47,6 +58,25 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .font-heading { font-family: 'Sora', sans-serif; }
 .eyebrow { color: var(--accent); font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
 .bg-surface { background: var(--surface); }
+
+/* ── Section tone ramp ──────────────────────────────────────────────────────
+   The home page steps through three elevations — deep, mid, raised — instead
+   of flipping between two. Each tier carries its own card fill and hairline,
+   so a card always sits exactly one step *above* its section no matter where
+   on the ramp that section is; a `bg-background` card under a raised section
+   would otherwise read as a hole punched in the page.
+
+   The lighter tiers pick up a few points of blue, which is what keeps the
+   orange accent reading as warm rather than muddy as the ground brightens. */
+.tone-deep   { --tone-bg: #0A0A0A; --tone-card: #17171B; --tone-line: rgba(255,255,255,.10); --tone-seam: rgba(0,0,0,.65); }
+.tone-mid    { --tone-bg: #141418; --tone-card: #22222A; --tone-line: rgba(255,255,255,.12); --tone-seam: rgba(255,255,255,.05); }
+.tone-raised { --tone-bg: #1F1F26; --tone-card: #2E2E38; --tone-line: rgba(255,255,255,.14); --tone-seam: rgba(255,255,255,.07); }
+
+/* The tonal step is itself the divider, so sections no longer need a boxed-in
+   `border-y`. All that's left is a hairline seam: a highlight where the ramp
+   climbs, a shadow where it drops back down. */
+.tone-section { background: var(--tone-bg); box-shadow: inset 0 1px 0 0 var(--tone-seam); }
+
 .bg-grid { background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 48px 48px; }
 
 /* Denser grid for the industries quadrant plot, faded toward the edges via a
@@ -86,8 +116,8 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
   border-radius: .375rem; padding: 1.75rem;
-  border: 1px solid rgba(255,255,255,.10);
-  background: var(--surface);
+  border: 1px solid var(--tone-line);
+  background: var(--tone-card);
   transition: border-color .3s ease, box-shadow .3s ease;
 }
 .mem:hover .mem-face, .mem.is-flipped .mem-face { border-color: rgba(255,106,0,.45); box-shadow: 0 18px 40px -22px rgba(0,0,0,.9); }
@@ -112,6 +142,76 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
     mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
     -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent 100%);
   }
+}
+
+/* ── "Who We Are" transport panel ──────────────────────────────────────────
+   The pause bars are the section's mark, its opening quotation mark, and its
+   only control all at once, so they get a real crossfade to a play triangle
+   rather than a swapped icon: the bars slide together and drop away as the
+   triangle grows out of the same spot. */
+.wm-toggle {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  transition: background-color .3s ease, border-color .3s ease, transform .3s cubic-bezier(.22,1,.36,1);
+}
+.wm-toggle:hover { background: color-mix(in srgb, var(--accent) 22%, transparent); border-color: var(--accent); transform: scale(1.05); }
+.wm-toggle:active { transform: scale(.96); }
+
+/* Two rings that sit still while paused and breathe outward while playing. */
+.wm-ring {
+  position: absolute; inset: -1px; border-radius: 9999px; pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  opacity: 0;
+}
+.wm-toggle[aria-pressed='true'] .wm-ring { animation: wm-ring-out 2.6s ease-out infinite; }
+.wm-toggle[aria-pressed='true'] .wm-ring-2 { animation-delay: 1.3s; }
+@keyframes wm-ring-out {
+  0%   { opacity: .8; transform: scale(1); }
+  100% { opacity: 0;  transform: scale(1.85); }
+}
+
+.wm-glyph { position: relative; display: grid; place-items: center; width: 40%; height: 40%; }
+.wm-glyph-bar {
+  position: absolute; top: 0; height: 100%; width: 30%;
+  border-radius: 9999px; background: currentColor;
+  transition: transform .38s cubic-bezier(.22,1,.36,1), opacity .22s ease;
+}
+.wm-glyph-bar:nth-child(1) { left: 0; }
+.wm-glyph-bar:nth-child(2) { right: 0; }
+.wm-glyph-play {
+  position: absolute; width: 118%; height: 118%;
+  opacity: 0; transform: scale(.55);
+  transition: transform .38s cubic-bezier(.22,1,.36,1), opacity .22s ease .06s;
+}
+/* Playing: bars collapse into the middle and hand off to the triangle. */
+.wm-glyph.is-playing .wm-glyph-bar { opacity: 0; }
+.wm-glyph.is-playing .wm-glyph-bar:nth-child(1) { transform: translateX(115%) scaleX(.5); }
+.wm-glyph.is-playing .wm-glyph-bar:nth-child(2) { transform: translateX(-115%) scaleX(.5); }
+.wm-glyph.is-playing .wm-glyph-play { opacity: 1; transform: scale(1); }
+
+/* Status dot on the header. */
+.wm-dot { animation: wm-dot-pulse 1.6s ease-in-out infinite; }
+@keyframes wm-dot-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+
+/* The waveform reads as a still frame until the panel is playing, at which
+   point each bar picks up the same oscillation offset by its own delay. */
+.wm-bar { transform-origin: center; }
+.wm-wave.is-live .wm-bar { animation: wm-bar-flex 1.15s ease-in-out infinite alternate; }
+@keyframes wm-bar-flex {
+  from { transform: scaleY(.32); }
+  to   { transform: scaleY(1.12); }
+}
+
+/* The panel's motion is decorative, so it drops out entirely when the visitor
+   has asked for less of it — the JS ticker is gated on the same query, which
+   leaves the playhead and counter parked wherever they were. This has to stay
+   last: it matches the rules above at equal specificity and only wins on
+   source order. */
+@media (prefers-reduced-motion: reduce) {
+  .wm-wave.is-live .wm-bar,
+  .wm-toggle[aria-pressed='true'] .wm-ring,
+  .wm-dot { animation: none; }
 }
 
 /* Slow accent pulse on the floating pill. Ported from the A1/Pioneer .nav-glow,
