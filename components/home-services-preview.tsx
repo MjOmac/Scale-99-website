@@ -28,21 +28,21 @@ export function HomeServicesPreview() {
             aria-pressed={active === i}
             className={`flex shrink-0 items-center gap-3 rounded-lg border px-4 py-3 text-left text-sm font-medium transition-colors lg:w-full ${
               active === i
-                ? 'border-accent/40 bg-tone-card text-accent'
+                ? 'border-accent/40 bg-tone-card text-accent-ink'
                 : 'border-tone-line text-muted-foreground hover:border-white/25 hover:text-foreground'
             }`}
           >
-            <span className={`font-mono text-xs ${active === i ? 'text-accent/70' : 'text-muted-foreground/50'}`}>{s.number}</span>
+            <span className={`font-mono text-xs ${active === i ? 'text-accent-ink/70' : 'text-muted-foreground/50'}`}>{s.number}</span>
             <span className="whitespace-nowrap lg:whitespace-normal">{s.title}</span>
           </button>
         ))}
       </div>
 
       <div className="relative overflow-hidden rounded-xl border border-tone-line bg-tone-card">
-        <div className="flex items-center gap-1.5 border-b border-tone-line bg-white/[0.03] px-4 py-2.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+        <div className="flex items-center gap-1.5 border-b border-tone-line bg-tone-chrome px-4 py-2.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-tone-dot" />
+          <span className="h-2.5 w-2.5 rounded-full bg-tone-dot" />
+          <span className="h-2.5 w-2.5 rounded-full bg-tone-dot" />
         </div>
         <div className="relative min-h-[240px] overflow-hidden">
           <ServiceVideoStack services={services} activeIndex={active} />
@@ -57,15 +57,15 @@ export function HomeServicesPreview() {
             }}
           />
           <div className="relative p-8 sm:p-10">
-            <span className="font-mono text-xs text-accent">{service.number}</span>
+            <span className="font-mono text-xs text-accent-ink">{service.number}</span>
             <h3 className="mt-2 font-heading text-2xl font-semibold sm:text-3xl">{service.title}</h3>
             <p className="mt-4 max-w-xl leading-7 text-muted-foreground">{service.text}</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {service.tags.map(tag => (
-                <span key={tag} className="rounded-full border border-white/15 bg-tone-bg/80 px-3 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm">{tag}</span>
+                <span key={tag} className="rounded-full border border-tone-line bg-tone-bg/80 px-3 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm">{tag}</span>
               ))}
             </div>
-            <Link href="/services" className="mt-7 flex w-fit items-center gap-2 text-sm font-semibold text-accent">
+            <Link href="/services" className="mt-7 flex w-fit items-center gap-2 text-sm font-semibold text-accent-ink">
               Explore all six services <ArrowRight size={16} />
             </Link>
           </div>

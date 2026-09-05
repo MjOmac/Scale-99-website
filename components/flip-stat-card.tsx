@@ -36,8 +36,8 @@ export function FlipStatCard({ index, headline, label, detail, accent, animation
     >
       <div className="mem-inner">
         <div className="mem-face">
-          <span className="relative font-mono text-xs text-accent">{String(index + 1).padStart(2, '0')}</span>
-          <p className={`relative mt-3 font-heading text-3xl font-semibold ${accent ? 'text-accent' : 'text-foreground'}`}>{headline}</p>
+          <span className="relative font-mono text-xs text-accent-ink">{String(index + 1).padStart(2, '0')}</span>
+          <p className={`relative mt-3 font-heading text-3xl font-semibold ${accent ? 'text-accent-ink' : 'text-foreground'}`}>{headline}</p>
           <p className="relative mt-2 text-xs uppercase tracking-[0.18em] text-muted-foreground">{label}</p>
         </div>
         <div className="mem-face mem-back">

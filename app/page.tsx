@@ -80,7 +80,7 @@ export default function Page() {
       <JsonLd data={faqJsonLd(faqs)} />
       <main className="min-h-screen bg-background text-center text-foreground">
         {/* ── Hero ─────────────────────────────────────────────── */}
-        <section id="top" className="tone-deep relative flex min-h-[480px] items-end overflow-hidden px-6 pb-20 pt-24 lg:min-h-[560px] lg:px-10 lg:pb-24">
+        <section id="top" className="tone-black relative flex min-h-[480px] items-end overflow-hidden px-6 pb-20 pt-24 lg:min-h-[560px] lg:px-10 lg:pb-24">
           {/* Decorative background. The poster is the video's own first frame
               (extracted with ffmpeg), so it covers the buffer window and stands
               in on failure without the swap being visible — an unrelated still
@@ -99,11 +99,11 @@ export default function Page() {
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-background/10" />
           <div className="absolute inset-0 bg-grid opacity-25" />
           <div className="relative mx-auto w-full max-w-5xl">
-            <p className="mb-6 flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+            <p className="mb-6 flex items-center justify-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-accent-ink">
               <span className="h-px w-8 bg-accent" />Systems for what&apos;s next<span className="h-px w-8 bg-accent" />
             </p>
             <h1 className="font-heading text-balance text-4xl font-bold leading-[1.05] tracking-[-0.03em] sm:text-6xl lg:text-7xl">
-              No one gets <br />your business<br /><span className="text-accent">better than us.</span>
+              No one gets <br />your business<br /><span className="text-accent-ink">better than us.</span>
             </h1>
             <p className="mx-auto mt-8 max-w-xl text-pretty text-lg leading-7 text-muted-foreground sm:text-xl">
               We engineer the systems, experiences, and momentum that move ambitious businesses forward.
@@ -120,7 +120,7 @@ export default function Page() {
         </section>
 
         {/* ── Trusted by ───────────────────────────────────────── */}
-        <section className="tone-mid tone-section relative overflow-hidden px-6 py-8 lg:px-10">
+        <section className="tone-gray tone-section relative overflow-hidden px-6 py-8 lg:px-10">
           <div className="absolute inset-0 bg-grid opacity-15" />
           <div className="relative mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-10 gap-y-4 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             <span className="text-foreground/70">Trusted by teams at</span>
@@ -132,7 +132,7 @@ export default function Page() {
         </section>
 
         {/* ── Why us: flip "memory" cards ──────────────────────── */}
-        <section className="tone-raised tone-section px-6 py-24 lg:px-10 lg:py-28">
+        <section className="tone-light tone-section px-6 py-24 lg:px-10 lg:py-28">
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow">Why teams pick us</p>
             <h2 className="mt-5 font-heading text-4xl font-semibold tracking-tight sm:text-5xl">Three things you&apos;ll notice.</h2>
@@ -154,14 +154,14 @@ export default function Page() {
         </section>
 
         {/* ── About ────────────────────────────────────────────── */}
-        <section id="about" className="tone-deep tone-section relative overflow-hidden px-6 py-24 lg:px-10 lg:py-32">
+        <section id="about" className="tone-black tone-section relative overflow-hidden px-6 py-24 lg:px-10 lg:py-32">
           <div className="absolute inset-0 bg-grid opacity-15" />
           <WhoWeAre />
         </section>
 
         {/* ── Services → /services ─────────────────────────────
             Borrows the tab-list + chrome window pairing from the services page. */}
-        <section id="services" className="tone-mid tone-section px-6 py-24 lg:px-10 lg:py-32">
+        <section id="services" className="tone-gray tone-section px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow">What we do</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -177,7 +177,7 @@ export default function Page() {
 
         {/* ── Software → /software ─────────────────────────────
             Borrows the browser-chrome product cards from the software index. */}
-        <section id="software" className="tone-raised tone-section px-6 py-24 lg:px-10 lg:py-32">
+        <section id="software" className="tone-light tone-section px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow">Software</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -195,10 +195,10 @@ export default function Page() {
                   className="group flex flex-col overflow-hidden rounded-xl border border-tone-line bg-tone-card text-left shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10"
                 >
                   <div className="relative overflow-hidden border-b border-tone-line">
-                    <div className="flex items-center gap-1.5 border-b border-tone-line bg-white/[0.03] px-4 py-2.5">
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    <div className="flex items-center gap-1.5 border-b border-tone-line bg-tone-chrome px-4 py-2.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-tone-dot" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-tone-dot" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-tone-dot" />
                     </div>
                     <div className="relative aspect-video overflow-hidden">
                       {product.heroImage && (
@@ -210,14 +210,14 @@ export default function Page() {
                           className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
                         />
                       )}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-tone-card/40 via-transparent to-transparent" />
                     </div>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <span className="w-fit rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">{product.category}</span>
-                    <h3 className="mt-4 font-heading text-xl font-semibold leading-tight transition-colors group-hover:text-accent">{product.title}</h3>
+                    <span className="w-fit rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent-ink">{product.category}</span>
+                    <h3 className="mt-4 font-heading text-xl font-semibold leading-tight transition-colors group-hover:text-accent-ink">{product.title}</h3>
                     <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">{product.shortExplanation}</p>
-                    <span className="mt-auto flex items-center gap-2 pt-5 text-sm font-semibold text-accent">
+                    <span className="mt-auto flex items-center gap-2 pt-5 text-sm font-semibold text-accent-ink">
                       Read case study <ArrowRight className="transition-transform group-hover:translate-x-2" size={16} />
                     </span>
                   </div>
@@ -225,7 +225,7 @@ export default function Page() {
               ))}
             </div>
 
-            <Link href="/software" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+            <Link href="/software" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent-ink">
               See all {products.length} products <ArrowRight size={16} />
             </Link>
           </div>
@@ -233,7 +233,7 @@ export default function Page() {
 
         {/* ── Case study → /case-studies ───────────────────────
             Borrows the four-step flowchart from an individual case study page. */}
-        <section id="work" className="tone-deep tone-section px-6 py-24 lg:px-10 lg:py-32">
+        <section id="work" className="tone-black tone-section px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow">Case studies</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -251,17 +251,17 @@ export default function Page() {
               { heading: 'The Results', body: featuredCaseStudy.caseStudy.results, icon: TrendingUp },
               ].map((step, i, arr) => (
                 <div key={step.heading} className="relative flex items-start gap-5 sm:gap-6">
-                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-accent bg-tone-bg text-accent shadow-lg shadow-accent/20">
+                  <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-accent bg-tone-bg text-accent-ink shadow-lg shadow-accent/20">
                     <step.icon size={22} />
                   </div>
                   {i < arr.length - 1 && (
                     <>
                       <span className="absolute left-7 top-14 h-6 w-px -translate-x-1/2 bg-gradient-to-b from-accent/60 to-accent/10" />
-                      <ChevronDown className="absolute left-7 top-[3.5rem] -translate-x-1/2 text-accent/50" size={14} />
+                      <ChevronDown className="absolute left-7 top-[3.5rem] -translate-x-1/2 text-accent-ink/50" size={14} />
                     </>
                   )}
                   <div className="flex-1 rounded-md border border-tone-line bg-tone-card p-6 transition-colors hover:border-accent/30 sm:p-7">
-                    <p className="font-mono text-xs text-accent">STEP {String(i + 1).padStart(2, '0')}</p>
+                    <p className="font-mono text-xs text-accent-ink">STEP {String(i + 1).padStart(2, '0')}</p>
                     <h3 className="mt-1 font-heading text-xl font-semibold">{step.heading}</h3>
                     <p className="mt-3 line-clamp-3 leading-7 text-muted-foreground">{step.body}</p>
                   </div>
@@ -269,7 +269,7 @@ export default function Page() {
               ))}
             </div>
 
-            <Link href="/case-studies" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+            <Link href="/case-studies" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent-ink">
               Read every case study <ArrowRight size={16} />
             </Link>
           </div>
@@ -277,7 +277,7 @@ export default function Page() {
 
         {/* ── Websites → /websites ─────────────────────────────
             Borrows the live-site mockup cards from the websites page. */}
-        <section id="websites" className="tone-mid tone-section px-6 py-24 lg:px-10 lg:py-32">
+        <section id="websites" className="tone-gray tone-section px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow">Websites</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -295,10 +295,10 @@ export default function Page() {
                   className="group flex flex-col overflow-hidden rounded-xl border border-tone-line bg-tone-card text-left shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-2xl hover:shadow-accent/10"
                 >
                   <div className="relative overflow-hidden border-b border-tone-line">
-                    <div className="flex items-center gap-1.5 border-b border-tone-line bg-white/[0.03] px-4 py-2.5">
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                    <div className="flex items-center gap-1.5 border-b border-tone-line bg-tone-chrome px-4 py-2.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-tone-dot" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-tone-dot" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-tone-dot" />
                     </div>
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <Image
@@ -308,21 +308,21 @@ export default function Page() {
                         sizes="(min-width: 768px) 33vw, 100vw"
                         className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
                       />
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-tone-card/40 via-transparent to-transparent" />
                     </div>
                   </div>
                   <div className="flex items-center justify-between gap-3 p-5">
                     <div>
-                      <h3 className="font-heading text-base font-semibold leading-tight transition-colors group-hover:text-accent">{site.client}</h3>
+                      <h3 className="font-heading text-base font-semibold leading-tight transition-colors group-hover:text-accent-ink">{site.client}</h3>
                       <p className="mt-1 text-xs text-muted-foreground">{site.category}</p>
                     </div>
-                    <ArrowUpRight className="shrink-0 text-muted-foreground/50 transition-colors group-hover:text-accent" size={16} />
+                    <ArrowUpRight className="shrink-0 text-muted-foreground/50 transition-colors group-hover:text-accent-ink" size={16} />
                   </div>
                 </Link>
               ))}
             </div>
 
-            <Link href="/websites" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+            <Link href="/websites" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent-ink">
               See every site we&apos;ve built <ArrowRight size={16} />
             </Link>
           </div>
@@ -330,7 +330,7 @@ export default function Page() {
 
         {/* ── Industries → /industries ─────────────────────────
             Borrows the two-axis positioning map from the industries page. */}
-        <section id="industries" className="tone-raised tone-section px-6 py-24 lg:px-10 lg:py-32">
+        <section id="industries" className="tone-light tone-section px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow">Industries</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -351,13 +351,16 @@ export default function Page() {
                 <p className="absolute -top-1 left-1/2 -translate-x-1/2 text-[0.6rem] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                   More regulated
                 </p>
-                <div className="absolute inset-x-0 top-1/2 h-px" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,.16) 15%, rgba(255,255,255,.16) 85%, transparent)' }} />
-                <div className="absolute inset-y-0 left-1/2 w-px" style={{ background: 'linear-gradient(180deg, transparent, rgba(255,255,255,.16) 15%, rgba(255,255,255,.16) 85%, transparent)' }} />
+                {/* Axes fade out at both ends. They draw in the tier's own
+                    hairline — hardcoded white would leave the plot with no
+                    axes at all on a light section. */}
+                <div className="absolute inset-x-0 top-1/2 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--tone-line) 15%, var(--tone-line) 85%, transparent)' }} />
+                <div className="absolute inset-y-0 left-1/2 w-px" style={{ background: 'linear-gradient(180deg, transparent, var(--tone-line) 15%, var(--tone-line) 85%, transparent)' }} />
                 {industryNodes.map(node => (
                   <div key={node.title}>
-                    <div className="pointer-events-none absolute bottom-0 border-l border-dashed border-white/10" style={{ left: `${node.x}%`, height: `${node.y}%` }} />
+                    <div className="pointer-events-none absolute bottom-0 border-l border-dashed border-tone-line" style={{ left: `${node.x}%`, height: `${node.y}%` }} />
                     <div
-                      className="pointer-events-none absolute border-t border-dashed border-white/10"
+                      className="pointer-events-none absolute border-t border-dashed border-tone-line"
                       style={{ bottom: `${node.y}%`, left: `${Math.min(50, node.x)}%`, width: `${Math.abs(node.x - 50)}%` }}
                     />
                     <span className="absolute -translate-x-1/2 translate-y-1/2" style={{ left: `${node.x}%`, bottom: `${node.y}%` }}>
@@ -366,7 +369,7 @@ export default function Page() {
                       )}
                       <span
                         className={`relative flex h-5 w-5 items-center justify-center rounded-full border-2 font-mono text-[0.6rem] font-bold transition-transform duration-300 group-hover:scale-110 ${
-                          node.count > 0 ? 'border-accent bg-tone-bg text-accent shadow-[0_0_10px_-2px_rgba(255,106,0,0.65)]' : 'border-dashed border-white/30 bg-tone-bg text-muted-foreground/60'
+                          node.count > 0 ? 'border-accent bg-tone-bg text-accent-ink shadow-[0_0_10px_-2px_rgba(255,106,0,0.65)]' : 'border-dashed border-tone-line bg-tone-bg text-muted-foreground'
                         }`}
                       >
                         {node.count > 0 ? node.count : '+'}
@@ -377,7 +380,7 @@ export default function Page() {
                     </span>
                   </div>
                 ))}
-                <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/25" />
+                <div className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-tone-dot" />
               </div>
               {/* List (below sm): same nodes, no overlap risk. */}
               <div className="relative flex flex-col gap-2 sm:hidden">
@@ -385,7 +388,7 @@ export default function Page() {
                   <span key={node.title} className="flex items-center gap-4 rounded-lg border border-tone-line bg-tone-bg/40 px-4 py-3">
                     <span
                       className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 font-mono text-[0.6rem] font-bold ${
-                        node.count > 0 ? 'border-accent bg-tone-bg text-accent' : 'border-dashed border-white/30 bg-tone-bg'
+                        node.count > 0 ? 'border-accent bg-tone-bg text-accent-ink' : 'border-dashed border-tone-line bg-tone-bg'
                       }`}
                     >
                       {node.count > 0 ? node.count : ''}
@@ -394,7 +397,7 @@ export default function Page() {
                   </span>
                 ))}
               </div>
-              <span className="relative mx-auto mt-6 flex w-fit items-center gap-2 text-sm font-semibold text-accent">
+              <span className="relative mx-auto mt-6 flex w-fit items-center gap-2 text-sm font-semibold text-accent-ink">
                 Explore the map <ArrowRight className="transition-transform group-hover:translate-x-2" size={16} />
               </span>
             </Link>
@@ -402,7 +405,7 @@ export default function Page() {
         </section>
 
         {/* ── Testimonials → /testimonials ─────────────────────── */}
-        <section id="testimonials" className="tone-deep tone-section px-6 py-24 lg:px-10 lg:py-32">
+        <section id="testimonials" className="tone-black tone-section px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow">Customer testimonials</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -412,20 +415,20 @@ export default function Page() {
               {testimonials.map(t => (
                 <blockquote key={t.name} className="rounded-md border border-tone-line bg-tone-card p-8">
                   <p className="font-heading text-xl font-semibold leading-snug tracking-tight">&quot;{t.quote}&quot;</p>
-                  <footer className="mt-6 text-sm font-semibold text-accent">
+                  <footer className="mt-6 text-sm font-semibold text-accent-ink">
                     — {t.name}, <span className="font-normal text-muted-foreground">{t.role}</span>
                   </footer>
                 </blockquote>
               ))}
             </div>
-            <Link href="/testimonials" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+            <Link href="/testimonials" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent-ink">
               All testimonials <ArrowRight size={16} />
             </Link>
           </div>
         </section>
 
         {/* ── Partners → /partners ─────────────────────────────── */}
-        <section id="partners" className="tone-mid tone-section px-6 py-24 lg:px-10 lg:py-32">
+        <section id="partners" className="tone-gray tone-section px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow">Partners</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -441,19 +444,19 @@ export default function Page() {
                   href="/partners"
                   className="group flex min-h-40 flex-col items-center justify-center gap-3 rounded-md border border-tone-line bg-tone-card p-7 transition-colors hover:border-accent/40"
                 >
-                  <p className="font-heading text-lg font-semibold transition-colors group-hover:text-accent">{partner.name}</p>
+                  <p className="font-heading text-lg font-semibold transition-colors group-hover:text-accent-ink">{partner.name}</p>
                   <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">{partner.category}</p>
                 </Link>
               ))}
             </div>
-            <Link href="/partners" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+            <Link href="/partners" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent-ink">
               Meet our partners <ArrowRight size={16} />
             </Link>
           </div>
         </section>
 
         {/* ── Blog → /blog ─────────────────────────────────────── */}
-        <section id="blog" className="tone-raised tone-section px-6 py-24 lg:px-10 lg:py-32">
+        <section id="blog" className="tone-light tone-section px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-5xl">
             <p className="eyebrow">From the field</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
@@ -466,23 +469,23 @@ export default function Page() {
                   href="/blog"
                   className="group flex flex-col rounded-md border border-tone-line bg-tone-card p-7 text-left transition-colors hover:border-accent/40"
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">{post.type}</p>
-                  <h3 className="mt-5 font-heading text-xl font-semibold leading-tight transition-colors group-hover:text-accent">{post.title}</h3>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink">{post.type}</p>
+                  <h3 className="mt-5 font-heading text-xl font-semibold leading-tight transition-colors group-hover:text-accent-ink">{post.title}</h3>
                   <div className="mt-auto flex items-center gap-3 pt-10 text-xs text-muted-foreground">
                     <span>{post.date}</span>
-                    <ArrowRight size={16} className="text-accent transition-transform group-hover:translate-x-1" />
+                    <ArrowRight size={16} className="text-accent-ink transition-transform group-hover:translate-x-1" />
                   </div>
                 </Link>
               ))}
             </div>
-            <Link href="/blog" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent">
+            <Link href="/blog" className="mx-auto mt-12 flex w-fit items-center gap-3 text-sm font-semibold text-accent-ink">
               Read the blog <ArrowRight size={16} />
             </Link>
           </div>
         </section>
 
         {/* ── FAQ ──────────────────────────────────────────────── */}
-        <section id="faq" className="tone-deep tone-section px-6 py-24 lg:px-10 lg:py-32">
+        <section id="faq" className="tone-black tone-section px-6 py-24 lg:px-10 lg:py-32">
           <div className="mx-auto max-w-3xl">
             <p className="eyebrow">FAQ</p>
             <h2 className="mt-5 font-heading text-4xl font-semibold tracking-tight sm:text-5xl">Common questions.</h2>
@@ -491,7 +494,7 @@ export default function Page() {
                 <details key={faq.q} className="group py-6">
                   <summary className="flex list-none items-center justify-center gap-3 font-heading text-lg font-semibold marker:content-none">
                     {faq.q}
-                    <ChevronDown className="shrink-0 text-accent transition-transform duration-200 group-open:rotate-180" size={18} />
+                    <ChevronDown className="shrink-0 text-accent-ink transition-transform duration-200 group-open:rotate-180" size={18} />
                   </summary>
                   <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">{faq.a}</p>
                 </details>
@@ -504,12 +507,12 @@ export default function Page() {
             Deliberately shares the FAQ's tier with no seam between them, so
             the page lands on one uninterrupted stretch of black instead of
             picking the ramp back up right before the form. */}
-        <section id="contact" className="tone-deep relative overflow-hidden px-6 py-28 lg:px-10 lg:py-36">
+        <section id="contact" className="tone-black relative overflow-hidden px-6 py-28 lg:px-10 lg:py-36">
           <div className="absolute inset-0 bg-grid opacity-15" />
           <div className="relative mx-auto flex max-w-5xl flex-col items-center">
             <p className="eyebrow">Start a conversation</p>
             <h2 className="mx-auto mt-5 max-w-2xl font-heading text-5xl font-semibold leading-[1.05] tracking-tight sm:text-7xl">
-              Ready to build<br />what&apos;s next<span className="text-accent">?</span>
+              Ready to build<br />what&apos;s next<span className="text-accent-ink">?</span>
             </h2>
             <p className="mx-auto mt-6 max-w-xl leading-7 text-muted-foreground">
               Tell us what your business is trying to do. We&apos;ll tell you what it would actually take.

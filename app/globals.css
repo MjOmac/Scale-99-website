@@ -13,11 +13,18 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
+  /* Accent for *text*. Full #FF6A00 only clears 3:1 against the light tier, so
+     that tier swaps in a darker orange while `bg-accent` fills stay brand
+     orange everywhere. Use `text-accent-ink` for accent type, `bg-accent` for
+     buttons and rules. */
+  --color-accent-ink: var(--accent-ink);
   /* Resolved at the use site rather than at :root, so `bg-tone-card` picks up
      whichever tier the enclosing section set. See the tone ramp below. */
   --color-tone-bg: var(--tone-bg);
   --color-tone-card: var(--tone-card);
   --color-tone-line: var(--tone-line);
+  --color-tone-chrome: var(--tone-chrome);
+  --color-tone-dot: var(--tone-dot);
   --font-sans: 'Inter', sans-serif;
   --font-heading: 'Sora', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
@@ -32,12 +39,16 @@
   --accent: #FF6A00;
   --accent-foreground: #0A0A0A;
   --border: rgba(255,255,255,.12);
-  /* Defaults match .tone-deep so the tone utilities resolve outside a tiered
+  --accent-ink: var(--accent);
+  /* Defaults match .tone-black so the tone utilities resolve outside a tiered
      section too (footer, pages that haven't opted in). */
   --tone-bg: #0A0A0A;
   --tone-card: #17171B;
   --tone-line: rgba(255,255,255,.10);
   --tone-seam: transparent;
+  --tone-grid: rgba(255,255,255,.06);
+  --tone-chrome: rgba(255,255,255,.03);
+  --tone-dot: rgba(255,255,255,.15);
   --cursor-arrow: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBkPSJNNiAzTDYgMjYuNUwxMiAyMUwxNi41IDI5LjVMMjAuNSAyNy41TDE2IDE5TDI0IDE5WiIgZmlsbD0iI0ZGNkEwMCIgc3Ryb2tlPSIjMEEwQTBBIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+");
 }
 
@@ -56,33 +67,62 @@ a, button, summary, input, select, textarea, label, [role='button'], [tabindex] 
 }
 body { margin: 0; background: var(--background); color: var(--foreground); font-family: 'Inter', sans-serif; }
 .font-heading { font-family: 'Sora', sans-serif; }
-.eyebrow { color: var(--accent); font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+.eyebrow { color: var(--accent-ink); font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
 .bg-surface { background: var(--surface); }
 
 /* ── Section tone ramp ──────────────────────────────────────────────────────
-   The home page steps through three elevations — deep, mid, raised — instead
-   of flipping between two. Each tier carries its own card fill and hairline,
-   so a card always sits exactly one step *above* its section no matter where
-   on the ramp that section is; a `bg-background` card under a raised section
-   would otherwise read as a hole punched in the page.
+   The home page cycles black → gray → light rather than flipping between two
+   near-identical darks. Each tier carries a full set: its ground, the card
+   fill one step above it, its hairline, and the incidental greys (grid,
+   window chrome) that would otherwise be hardcoded white and vanish the
+   moment a section goes light.
 
-   The lighter tiers pick up a few points of blue, which is what keeps the
-   orange accent reading as warm rather than muddy as the ground brightens. */
-.tone-deep   { --tone-bg: #0A0A0A; --tone-card: #17171B; --tone-line: rgba(255,255,255,.10); --tone-seam: rgba(0,0,0,.65); }
-.tone-mid    { --tone-bg: #141418; --tone-card: #22222A; --tone-line: rgba(255,255,255,.12); --tone-seam: rgba(255,255,255,.05); }
-.tone-raised { --tone-bg: #1F1F26; --tone-card: #2E2E38; --tone-line: rgba(255,255,255,.14); --tone-seam: rgba(255,255,255,.07); }
+   `.tone-light` also reassigns --foreground / --muted-foreground, which is
+   what makes every `text-foreground` and `text-muted-foreground` inside it
+   flip to ink automatically instead of needing a light variant per element.
+   It is a genuinely inverted section, not a dark one that got brighter. */
+.tone-black {
+  --tone-bg: #0A0A0A; --tone-card: #17171B;
+  --tone-line: rgba(255,255,255,.10); --tone-seam: rgba(0,0,0,.65);
+  --tone-grid: rgba(255,255,255,.06); --tone-chrome: rgba(255,255,255,.03); --tone-dot: rgba(255,255,255,.15);
+}
+/* Gray is held down at #1C1C22 rather than pushed toward a true mid-gray: at
+   #23232A its cards lifted to #31313A, and accent orange on that only reaches
+   4.48:1 — just under AA for the service titles and links that sit on it.
+   This keeps a clear step above black while leaving accent text at ~5:1. */
+.tone-gray {
+  --tone-bg: #1C1C22; --tone-card: #2A2A32;
+  --tone-line: rgba(255,255,255,.13); --tone-seam: rgba(255,255,255,.06);
+  --tone-grid: rgba(255,255,255,.05); --tone-chrome: rgba(255,255,255,.04); --tone-dot: rgba(255,255,255,.18);
+}
+.tone-light {
+  --tone-bg: #F4F1EA; --tone-card: #FFFFFF;
+  --tone-line: rgba(24,20,12,.14); --tone-seam: rgba(24,20,12,.12);
+  --tone-grid: rgba(24,20,12,.05); --tone-chrome: rgba(24,20,12,.035); --tone-dot: rgba(24,20,12,.14);
+  --foreground: #16130E;
+  --muted-foreground: #5F5A50;
+  --accent-ink: #B04600;
+}
+
+/* Each tier restates `color` on itself. Redefining --foreground alone is not
+   enough: `text-foreground` on <main> resolves to white *at <main>*, and that
+   computed value then inherits straight past a section that only changed the
+   variable — which left every heading without its own colour class rendering
+   white-on-beige. Setting colour here means it resolves at the section, where
+   the tier's --foreground is the one in scope. */
+.tone-black, .tone-gray, .tone-light { color: var(--foreground); }
 
 /* The tonal step is itself the divider, so sections no longer need a boxed-in
    `border-y`. All that's left is a hairline seam: a highlight where the ramp
    climbs, a shadow where it drops back down. */
 .tone-section { background: var(--tone-bg); box-shadow: inset 0 1px 0 0 var(--tone-seam); }
 
-.bg-grid { background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 48px 48px; }
+.bg-grid { background-image: linear-gradient(var(--tone-grid) 1px, transparent 1px), linear-gradient(90deg, var(--tone-grid) 1px, transparent 1px); background-size: 48px 48px; }
 
 /* Denser grid for the industries quadrant plot, faded toward the edges via a
    radial mask so it reads as a data surface rather than tiling off sharply. */
 .plot-grid {
-  background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-image: linear-gradient(var(--tone-grid) 1px, transparent 1px), linear-gradient(90deg, var(--tone-grid) 1px, transparent 1px);
   background-size: 32px 32px;
   mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 90%);
   -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 90%);
@@ -128,8 +168,8 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .mem-face::before {
   content: ''; position: absolute; inset: 0; border-radius: inherit; opacity: .5; pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    linear-gradient(var(--tone-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--tone-grid) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
@@ -189,6 +229,16 @@ body { margin: 0; background: var(--background); color: var(--foreground); font-
 .wm-glyph.is-playing .wm-glyph-bar:nth-child(1) { transform: translateX(115%) scaleX(.5); }
 .wm-glyph.is-playing .wm-glyph-bar:nth-child(2) { transform: translateX(-115%) scaleX(.5); }
 .wm-glyph.is-playing .wm-glyph-play { opacity: 1; transform: scale(1); }
+
+/* Narration. Each word warms into the accent as it's "spoken" and stays
+   there, so the highlight reads as a line being read aloud rather than a
+   single marker sliding along. The transition is what sells it — an instant
+   swap looks like a bug. */
+.wm-word { transition: color .3s ease; }
+.wm-word.is-spoken { color: var(--accent-ink); }
+@media (prefers-reduced-motion: reduce) {
+  .wm-word { transition: none; }
+}
 
 /* Status dot on the header. */
 .wm-dot { animation: wm-dot-pulse 1.6s ease-in-out infinite; }
